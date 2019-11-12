@@ -1,13 +1,28 @@
 import React,{ memo, useState } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
+import { useMutation } from '@apollo/react-hooks'
 import CloseAlert from '../CloseAlert'
+
+
+const mutation = gql`
+  mutation CreateSemester($name: String!){
+    createSemester(data:{
+      name: $name
+    }){
+      id
+      name
+    }
+  }
+`
 
 
 const AddSemester = (props) => {
   const [name,setName] = useState('')
   const [success,setSuccess] = useState('')
   const [error,setError] = useState('')
+
+  // const [addToDo,{ data, error: err }] = useMutation(mutation)
 
   const submitHandler = async e => {
     e.preventDefault()
@@ -21,10 +36,13 @@ const AddSemester = (props) => {
         setError('')
       }
     } catch (e) {
-      setError("Type is not valid!")
+      setError("Type is not valid or Semester already exists!")
       setSuccess('')
     }
   }
+
+
+
   return (
     <div className="col-sm-10 col-md-6 col-lg-4 my-3">
       <div className="card rounded-0" style={{background:"#E9ECEF"}}>
@@ -57,15 +75,7 @@ const AddSemester = (props) => {
   )
 }
 
-const mutation = gql`
-  mutation CreateSemester($name: String!){
-    createSemester(data:{
-      name: $name
-    }){
-      id
-      name
-    }
-  }
-`
+
 
 export default graphql(mutation)(memo(AddSemester))
+// export default memo(AddSemester)

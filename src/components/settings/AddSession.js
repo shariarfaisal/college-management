@@ -1,6 +1,7 @@
 import React,{ memo, useState } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
+import { useSubscription } from '@apollo/react-hooks'
 import CloseAlert from '../CloseAlert'
 
 const query = gql`
@@ -13,11 +14,26 @@ const query = gql`
   }
 `
 
+const subs = gql`
+  subscription{
+    session{
+      mutation
+      node{ id year }
+    }
+  }
+`
+
 const AddSession = (props) => {
   const [year,setYear] = useState('')
   const [success,setSuccess] = useState('')
   const [error,setError] = useState('')
 
+  const { data: sdata ,loading: subLoading } = useSubscription(subs)
+  if(sdata && !subLoading){
+    console.log(sdata);
+  }
+
+  
 
   const submitHandler = async e => {
     e.preventDefault()

@@ -1,24 +1,9 @@
-import React,{ useState, createContext, useEffect } from 'react'
+import React,{ createContext } from 'react'
 import { gql } from 'apollo-boost'
-import { graphql } from 'react-apollo'
+import { useQuery, useSubscription /*useLazyQuery*/ } from '@apollo/react-hooks'
 
 export const InfoContext = createContext()
 
-const InfoContextProvider = ({children,data}) => {
-  const [value,setValue] = useState({})
-
-  useEffect(() => {
-    if(!data.loading){
-      setValue(data.info)
-    }
-  })
-
-  return (
-    <InfoContext.Provider value={value}>
-      {children}
-    </InfoContext.Provider>
-  )
-}
 
 const query = gql`
   query{
@@ -30,4 +15,18 @@ const query = gql`
   }
 `
 
-export default graphql(query)(InfoContextProvider)
+
+
+const InfoContextProvider = ({children}) => {
+  const { loading, error, data, refetch } = useQuery(query)
+  // const [getInfo,{ loading, data }] = useLazyQuery(query)
+
+
+  return (
+    <InfoContext.Provider value={data ? data.info : {}}>
+      {children}
+    </InfoContext.Provider>
+  )
+}
+
+export default InfoContextProvider

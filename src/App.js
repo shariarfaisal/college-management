@@ -6,6 +6,7 @@ import Departments from './pages/Departments'
 import StudentRegister from './pages/StudentRegister'
 import TeacherRegister from './pages/TeacherRegister'
 import Settings from './pages/Settings'
+import Students from './pages/Students'
 
 const routes = [
   {path: '/',component: Home},
@@ -25,6 +26,9 @@ const App = () => {
             return <Route key={i} exact path={route.path} component={route.component} />
           })
         }
+        <Route exact path="/students" component={Students}>
+
+        </Route>
       </Switch>
     </BrowserRouter>
   )

@@ -38,7 +38,7 @@ const CreateDepartment = (props) => {
           {success && <CloseAlert type="success">{success}</CloseAlert>}
           {error && <CloseAlert type="danger">{error}</CloseAlert>}
           <form onSubmit={submitHandler} className="form-row align-items-center justify-content-left">
-            <div className="col-sm-10 my-1">
+            <div className="col-sm-12 my-1">
               <label className="sr-only" htmlFor="department">Department Name</label>
               <input
                 type="text"
