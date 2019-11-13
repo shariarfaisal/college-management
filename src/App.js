@@ -7,6 +7,9 @@ import StudentRegister from './pages/StudentRegister'
 import TeacherRegister from './pages/TeacherRegister'
 import Settings from './pages/Settings'
 import Students from './pages/Students'
+import StudentProfile from './pages/Student/Profile'
+import StudentAbout from './pages/Student/About'
+import BookList from './pages/BookList'
 
 const routes = [
   {path: '/',component: Home},
@@ -15,6 +18,10 @@ const routes = [
   {path: '/register/student',component: StudentRegister},
   {path: '/register/teacher',component: TeacherRegister},
   {path: '/settings',component: Settings},
+  {path: '/students',component: Students},
+  {path: '/student/:id',component: StudentProfile},
+  {path: '/student/:id/:about',component: StudentAbout},
+  {path: '/booklist',component: BookList},
 ]
 
 const App = () => {
@@ -26,9 +33,6 @@ const App = () => {
             return <Route key={i} exact path={route.path} component={route.component} />
           })
         }
-        <Route exact path="/students" component={Students}>
-
-        </Route>
       </Switch>
     </BrowserRouter>
   )

@@ -4,6 +4,7 @@ import AddSession from './AddSession'
 import AddSemester from './AddSemester'
 import CreateDepartment from './CreateDepartment'
 import { InfoContext } from '../../store/InfoContext'
+import Routine from './Routine'
 
 const Body = (props) => {
   const info = useContext(InfoContext)
@@ -26,9 +27,10 @@ const Body = (props) => {
         <CreateDepartment departments={departments}/>
         <AddSession sessions={sessions}/>
         <AddSemester semesters={semesters}/>
+        
       </div>
     </div>
   )
 }
-
+// <Routine />
 export default memo(Body)

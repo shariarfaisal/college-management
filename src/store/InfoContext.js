@@ -8,7 +8,11 @@ export const InfoContext = createContext()
 const query = gql`
   query{
     info{
-      departments{ id name }
+      departments{
+        id
+        name
+        bookLists{ id probidan semester{ id name } books{ id name code }}
+      }
       sessions{ id year }
       semesters{ id name }
     }

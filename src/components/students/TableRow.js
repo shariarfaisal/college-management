@@ -6,7 +6,7 @@ const TableRow = ({roll,name,id,department,semester}) => {
     <tr>
       <th scope="row">{roll}</th>
       <td>
-        <Link className="text-dark" to={`/students/${id}`}>{name}</Link>
+        <Link className="text-dark" to={`/student/${id}`}>{name}</Link>
       </td>
       <td>{department.name}</td>
       <td>{semester.name}</td>
