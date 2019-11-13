@@ -27,10 +27,9 @@ const Body = (props) => {
         <CreateDepartment departments={departments}/>
         <AddSession sessions={sessions}/>
         <AddSemester semesters={semesters}/>
-        
+         <Routine />
       </div>
     </div>
   )
 }
-// <Routine />
 export default memo(Body)

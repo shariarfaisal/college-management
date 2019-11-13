@@ -8,7 +8,7 @@ const query = gql`
         bookLists{ id probidan semester{ id name } books{ id name code }}
       }
       sessions{ id year }
-      semesters{ id name }
+      semesters{ id name routines{ id title }}
     }
   }
 `

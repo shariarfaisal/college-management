@@ -10,6 +10,7 @@ import Students from './pages/Students'
 import StudentProfile from './pages/Student/Profile'
 import StudentAbout from './pages/Student/About'
 import BookList from './pages/BookList'
+import Routines from './pages/Routines'
 
 const routes = [
   {path: '/',component: Home},
@@ -22,6 +23,7 @@ const routes = [
   {path: '/student/:id',component: StudentProfile},
   {path: '/student/:id/:about',component: StudentAbout},
   {path: '/booklist',component: BookList},
+  {path: '/routines',component: Routines},
 ]
 
 const App = () => {
