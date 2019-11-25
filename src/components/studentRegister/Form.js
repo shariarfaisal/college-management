@@ -82,6 +82,7 @@ const Form = (props) => {
 
       </div>
       <button className="btn btn-sm btn-info my-3 px-4" type="submit">Submit</button>
+      <p className="my-3">Already have an account? <a href="/login/student">login</a></p>
     </form>
   )
 }

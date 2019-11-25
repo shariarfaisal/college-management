@@ -13,6 +13,7 @@ const GET_DATA = gql`
       roll
       department{ id name }
       semester{ id name }
+      session{ id year }
     }
   }
 `

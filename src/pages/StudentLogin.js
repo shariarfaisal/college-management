@@ -4,24 +4,25 @@ import AdminLoginLayout from '../layouts/AdminLoginLayout'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
 
-const AdminLogin = (props) => {
-  const [username,setUsername] = useState('')
+
+const StudentLogin = (props) => {
+  const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [error,setError] = useState('')
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    if(username && password){
+    if(email && password){
       try {
         const { data } = await props.mutate({
-          variables:{ username, password}
+          variables:{ email, password}
         })
-        if(data.loginAdmin){
-          const token = `Bearer ${data.loginAdmin.token}`
+        if(data.loginStudent){
+          const token = `Bearer ${data.loginStudent.token}`
           setError('')
-          localStorage.setItem('admin',token)
+          localStorage.setItem('student',token)
           // props.history.push('/')
-          window.location = "/"
+          window.location = '/'
         }
       } catch (e) {
         setError("Unable to login!")
@@ -29,25 +30,26 @@ const AdminLogin = (props) => {
     }
   }
   return (
-    <AdminLoginLayout error={error} title="Admin Login">
+    <AdminLoginLayout error={error} title="Student Login">
       <form onSubmit={submitHandler}>
-        <FormGroup type="text" value={username} id="username" set={setUsername} plh="Username"/>
+        <FormGroup type="email" value={email} id="username" set={setEmail} plh="Email"/>
         <FormGroup type="password" value={password} id="password" set={setPassword} plh="Password"/>
         <button type="submit" className="btn btn-info py-2 px-4">
           login
         </button>
       </form>
+      <p className="mt-3">Have no account yet! <a href="/register/student">register</a> here</p>
     </AdminLoginLayout>
   )
 }
 
 const mutation = gql`
-  mutation LoginAdmin($username: String!,$password: String!){
-    loginAdmin(data:{username: $username,password: $password}){
+  mutation LoginStudent($email: String!,$password: String!){
+    loginStudent(data:{email: $email,password: $password}){
       token
     }
   }
 `
 
 
-export default graphql(mutation)(AdminLogin)
+export default graphql(mutation)(StudentLogin)

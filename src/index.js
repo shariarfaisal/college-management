@@ -8,9 +8,18 @@ const httpLink = new HttpLink({ uri: 'http://localhost:4000' });
 
 const authLink = new ApolloLink((operation, forward) => {
   const adminToken = localStorage.getItem('admin');
+  const studentToken = localStorage.getItem('student');
+  const teacherToken = localStorage.getItem('teacher');
+
   const headers = {}
   if(adminToken){
     headers.admin = adminToken
+  }
+  if(studentToken){
+    headers.student = studentToken
+  }
+  if(teacherToken){
+    headers.teacher = teacherToken
   }
   // Use the setContext method to set the HTTP headers.
   operation.setContext({ headers });

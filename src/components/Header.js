@@ -4,7 +4,7 @@ import React from 'react'
 
 const Header = ({children}) => {
   return (
-    <header className="text-center bg-info">
+    <header className="text-center bg-info sticky-top">
       <h1 className="display-3 text-light  py-4">Feni Computer Institute</h1>
       {children}
     </header>

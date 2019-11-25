@@ -1,12 +1,12 @@
 import React from 'react'
 import StudentLayout from '../../layouts/StudentLayout'
 
-const Student = ({ match }) => {
+const Home = (props) => {
   return (
-    <StudentLayout match={match}>
-      hello
+    <StudentLayout>
+
     </StudentLayout>
   )
 }
 
-export default Student
+export default Home

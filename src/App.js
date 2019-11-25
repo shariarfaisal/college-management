@@ -1,31 +1,25 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
-import Home from './pages/Home'
 import AdminLogin from './pages/AdminLogin'
-import Departments from './pages/Departments'
+import StudentLogin from './pages/StudentLogin'
+import TeacherLogin from './pages/TeacherLogin'
 import StudentRegister from './pages/StudentRegister'
 import TeacherRegister from './pages/TeacherRegister'
-import Settings from './pages/Settings'
-import Students from './pages/Students'
-import StudentProfile from './pages/Student/Profile'
-import StudentAbout from './pages/Student/About'
-import BookList from './pages/BookList'
-import Routines from './pages/Routines'
+import Welcome from './pages/Welcome'
+import checkUser from './utils/checkUser'
 
-const routes = [
-  {path: '/',component: Home},
-  {path: '/admin/login',component: AdminLogin},
-  {path: '/departments',component: Departments},
+const publicRoutes = [
+  {path: '/login/admin',component: AdminLogin},
+  {path: '/login/student',component: StudentLogin},
+  {path: '/login/teacher',component: TeacherLogin},
   {path: '/register/student',component: StudentRegister},
   {path: '/register/teacher',component: TeacherRegister},
-  {path: '/settings',component: Settings},
-  {path: '/students',component: Students},
-  {path: '/student/:id',component: StudentProfile},
-  {path: '/student/:id/:about',component: StudentAbout},
-  {path: '/booklist',component: BookList},
-  {path: '/routines',component: Routines},
+  {path: '',component: Welcome}
 ]
 
+const routes = checkUser(publicRoutes)
+
+console.log(routes);
 const App = () => {
   return (
     <BrowserRouter>
