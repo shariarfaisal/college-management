@@ -4,8 +4,8 @@ import { graphql } from 'react-apollo'
 import Select from './Select'
 import SelectSession from './SelectSession'
 import SelectShift from './SelectShift'
-import CloseAlert from '../CloseAlert'
-import query from '../bookList/Query'
+import CloseAlert from '../../CloseAlert'
+import routineQuery from './routineQuery'
 
 const CreateRoutine = ({info,mutate}) => {
   const [title,setTitle] = useState('')
@@ -23,7 +23,7 @@ const CreateRoutine = ({info,mutate}) => {
       if(title && session && semester && department && shift){
         const { data } = await mutate({
           variables: { title, session, semester, department, shift },
-          fetchQueries: [{ query }]
+          refetchQueries: [{ query: routineQuery }]
         })
         if(data){
           setSuccess('New Routine created successfully!')
@@ -38,7 +38,7 @@ const CreateRoutine = ({info,mutate}) => {
   }
 
   return (
-    <div className="col-md-10 bg-light">
+    <div className="col-md-10 mb-2" style={{background: "rgba(184, 192, 199, 0.32)"}}>
       <h3 className="my-3 text-center">Create Routine</h3>
       {success && <CloseAlert type="success">{success}</CloseAlert>}
       {error && <CloseAlert type="danger">{error}</CloseAlert>}

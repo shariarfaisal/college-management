@@ -2,7 +2,7 @@ import React,{ useState } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
 import Select from './Select'
-import CloseAlert from '../CloseAlert'
+import CloseAlert from '../../CloseAlert'
 import query from './Query'
 
 const CreateBookList = ({mutate,info}) => {
@@ -34,7 +34,7 @@ const CreateBookList = ({mutate,info}) => {
   }
 
   return (
-    <div className="col-md-10 p-4 my-4" style={{background:"#E9ECEF"}}>
+    <div className="col-md-12 p-4 my-4" style={{background:"#E9ECEF"}}>
       <h3 className="text-center mt-2 mb-4">Create A BookList</h3>
       {success && <CloseAlert type="success">{success}</CloseAlert>}
       {error && <CloseAlert type="danger">{error}</CloseAlert>}

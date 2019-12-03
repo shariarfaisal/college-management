@@ -32,15 +32,15 @@ const AddSession = (props) => {
     <div>
     {success && <CloseAlert type="success">{success}</CloseAlert>}
     {error && <CloseAlert type="danger">{error}</CloseAlert>}
-      <form className="row justify-content-around" onSubmit={submitHandler}>
+      <form className="d-flex justify-content-around" onSubmit={submitHandler}>
         <input
-          className="form-control col-xl-8 my-2"
+          className="form-control m-2"
           type="text"
           value={year}
           onChange={e => setYear(e.target.value)}
           placeholder="Add Session..."
         />
-        <button className="btn btn-info px-3 my-2 col-sm-6 col-xl-3">Add</button>
+        <button className="btn btn-info px-3 m-2">Add</button>
       </form>
     </div>
   )

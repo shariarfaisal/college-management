@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from 'react'
+import React,{ useState } from 'react'
 import FormGroup from '../components/FormGroup'
 import AdminLoginLayout from '../layouts/AdminLoginLayout'
 import { gql } from 'apollo-boost'

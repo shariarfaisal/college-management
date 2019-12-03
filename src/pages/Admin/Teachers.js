@@ -1,14 +1,14 @@
 import React from 'react'
-import CoreLayout from '../../layouts/CoreLayout'
-import HeaderWithNav from '../../components/HeaderWithNav'
+import AdminLayout from '../../layouts/AdminLayout'
 import Body from '../../components/teachers/Body'
 
 const Teachers = (props) => {
   return (
-    <CoreLayout>
-      <HeaderWithNav />
-      <Body />
-    </CoreLayout>
+    <AdminLayout>
+      <div className="col-12">
+        <Body />
+      </div>
+    </AdminLayout>
   )
 }
 

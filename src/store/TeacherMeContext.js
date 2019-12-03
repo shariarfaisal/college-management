@@ -8,7 +8,7 @@ export const TeacherMeContext = createContext()
 const GET_DATA = gql`
   query{
     teacherMe{
-      id name email phone address position classes{ id department{ id name } period{ id startedAt endAt } subject{ id code name }}
+      id name email phone address position classes{ id semester{ id name} day{ id day} department{ id name } period{ id time startedAt endAt } subject{ id code name }}
     }
   }
 `

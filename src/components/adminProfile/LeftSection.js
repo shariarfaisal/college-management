@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const items = [
@@ -18,7 +18,7 @@ const items = [
 
 const logout = (history) => {
   const sure = window.prompt('Are you sure you want to logout? yes/no')
-  if(sure == 'yes' || sure == 'y'){
+  if(sure === 'yes' || sure === 'y'){
     localStorage.removeItem('admin')
     window.location = '/'
   }
@@ -26,7 +26,7 @@ const logout = (history) => {
 
 const LeftSection = (props) => {
   return (
-    <Styles className="col-md-3" id="left-section">
+    <Styles className="col-md-3 col-lg-2" id="left-section">
       <ul className="nav flex-column my-2">
         {items.map((item,i) => (
           <li key={i} className="nav-item"><Link to={item.to} className="nav-link my-2">{item.title}</Link></li>

@@ -19,7 +19,7 @@ const Body = (props) => {
       setSemesters(info.semesters)
       setDepartments(info.departments)
     }
-  })
+  },[info])
 
   return (
     <div className="px-5">

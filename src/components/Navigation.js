@@ -1,7 +1,5 @@
-import React,{ useState } from 'react'
-// import PropTypes from 'prop-types'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import DropdownMenu from './DropdownMenu'
 
 const items = [
   {name: 'Home',link: '/'},

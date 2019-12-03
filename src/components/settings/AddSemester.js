@@ -1,7 +1,6 @@
 import React,{ memo, useState } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import { useMutation } from '@apollo/react-hooks'
 import CloseAlert from '../CloseAlert'
 
 

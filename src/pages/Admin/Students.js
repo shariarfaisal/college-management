@@ -1,7 +1,6 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
-import CoreLayout from '../../layouts/CoreLayout'
-import HeaderWithNav from '../../components/HeaderWithNav'
+import AdminLayout from '../../layouts/AdminLayout'
 import Body from '../../components/students/Body'
 import InfoContextProvider from '../../store/InfoContext'
 import StudentContextProvider from '../../store/StudentContext'
@@ -9,12 +8,13 @@ import StudentContextProvider from '../../store/StudentContext'
 const Students = (props) => {
   return (
     <InfoContextProvider>
-      <CoreLayout>
-        <HeaderWithNav />
-        <StudentContextProvider>
-          <Body />
-        </StudentContextProvider>
-      </CoreLayout>
+      <AdminLayout>
+        <div className="col-md-12">
+          <StudentContextProvider>
+            <Body />
+          </StudentContextProvider>
+        </div>
+      </AdminLayout>
     </InfoContextProvider>
   )
 }

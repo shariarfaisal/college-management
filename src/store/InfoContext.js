@@ -1,6 +1,6 @@
 import React,{ createContext } from 'react'
 import { gql } from 'apollo-boost'
-import { useQuery, useSubscription /*useLazyQuery*/ } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 
 export const InfoContext = createContext()
 
@@ -22,7 +22,7 @@ const query = gql`
 
 
 const InfoContextProvider = ({children}) => {
-  const { loading, error, data, refetch } = useQuery(query)
+  const { data, /*refetch*/ } = useQuery(query)
   // const [getInfo,{ loading, data }] = useLazyQuery(query)
 
 

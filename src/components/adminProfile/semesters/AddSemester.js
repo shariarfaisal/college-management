@@ -1,7 +1,6 @@
-import React,{ memo, useState } from 'react'
+import React,{ useState } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import { useMutation } from '@apollo/react-hooks'
 import CloseAlert from '../../CloseAlert'
 import { semesterQuery } from '../queries'
 
@@ -45,15 +44,15 @@ const AddSemester = (props) => {
     <div className="col-12">
     {success && <CloseAlert type="success">{success}</CloseAlert>}
     {error && <CloseAlert type="danger">{error}</CloseAlert>}
-      <form className="row justify-content-around" onSubmit={submitHandler}>
+      <form className="d-flex justify-content-around" onSubmit={submitHandler}>
         <input
-          className="form-control col-xl-8 my-2"
+          className="form-control m-2"
           type="text"
           value={name}
           onChange={e => setName(e.target.value)}
           placeholder="Add Semester..."
         />
-        <button className="btn btn-info px-3 my-2 col-sm-6 col-xl-3">Add</button>
+        <button className="btn btn-info px-3 m-2">Add</button>
       </form>
     </div>
   )

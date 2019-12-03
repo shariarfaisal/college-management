@@ -1,4 +1,4 @@
-import React,{ useContext,useEffect, useState } from 'react'
+import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import DepartmentItem from './DepartmentItem'
 import AddDepartment from './AddDepartment'

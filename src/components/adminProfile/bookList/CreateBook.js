@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-import CloseAlert from '../CloseAlert'
+import CloseAlert from '../../CloseAlert'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
 import query from './Query'
@@ -30,7 +30,6 @@ const CreateBook = ({ bookList, mutate }) => {
   return (
     <form onSubmit={submitHandler}>
       <div className="row justify-content-around mb-5">
-        <h3 className="text-center col-12 my-3">Add Book</h3>
         {success && <div className="col-12"><CloseAlert type="success">{success}</CloseAlert></div>}
         {error && <div className="col-12"><CloseAlert type="danger">{error}</CloseAlert></div>}
         <input value={name} onChange={e => setName(e.target.value)} className="col-md-6 form-control my-2" type="text" placeholder="Name"/>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import { sessionQuery } from '../queries'
 import Sessions from './Sessions'

@@ -8,7 +8,7 @@ const ListItem = ({id,semester,books,i}) => (
       <div className="card-header" data-toggle="collapse" data-target={`#collapse-${semester.id}`} style={{cursor: "pointer"}}>
         <p className="text-center m-0">{semester.name}</p>
       </div>
-      <div className={`card-body collapse ${i == 0 ? 'show' : ''}`} id={`collapse-${semester.id}`}>
+      <div className={`card-body collapse ${i === 0 ? 'show' : ''}`} id={`collapse-${semester.id}`}>
         <CreateBook bookList={id}/>
         {
           books.map((book,i) => (

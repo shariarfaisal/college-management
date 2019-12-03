@@ -8,13 +8,14 @@ const items = [
   {title: "Posts",to:"/posts"},
   {title: "Notices",to:"/notices"},
   {title: "Students",to:"/students"},
-  {title: "Classes",to:"/classes"},
+  {title: "Routine",to:"/routine"},
+  {title: "Attendence",to:"/attendence"},
   {title: "About",to:"/about"},
 ]
 
 const logout = (history) => {
   const sure = window.prompt('Are you sure you want to logout? yes/no')
-  if(sure == 'yes' || sure == 'y'){
+  if(sure === 'yes' || sure === 'y'){
     localStorage.removeItem('teacher')
     window.location = '/login/teacher'
   }

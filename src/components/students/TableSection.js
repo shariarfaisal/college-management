@@ -5,7 +5,7 @@ import TableRow from './TableRow'
 
 const Table = ({students,setSkip,skip}) => {
   return (
-    <div className="col-md-10 col-lg-8" >
+    <div className="col-12" >
       <table className="table">
         <Thead />
         <tbody>

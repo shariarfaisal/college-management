@@ -2,7 +2,7 @@ import React from 'react'
 
 const RightSection = ({children}) => {
   return (
-    <div className="col-md-3" id="right-section">
+    <div className="col-md-4" id="right-section">
       {children}
     </div>
   )

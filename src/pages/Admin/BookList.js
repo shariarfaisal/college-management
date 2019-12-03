@@ -1,16 +1,14 @@
 import React from 'react'
-import CoreLayout from '../../layouts/CoreLayout'
-import HeaderWithNav from '../../components/HeaderWithNav'
-import Body from '../../components/bookList/Body'
+import AdminLayout from '../../layouts/AdminLayout'
+import Body from '../../components/adminProfile/bookList/Body'
 import InfoContextProvider from '../../store/InfoContext'
 
 const BookList = (props) => {
   return (
     <InfoContextProvider>
-      <CoreLayout>
-        <HeaderWithNav />
+      <AdminLayout>
         <Body />
-      </CoreLayout>
+      </AdminLayout>
     </InfoContextProvider>
   )
 }

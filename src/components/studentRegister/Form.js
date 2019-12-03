@@ -21,7 +21,7 @@ const Form = (props) => {
   const [department,setDepartment] = useState(0)
   const [semester,setSemester] = useState(0)
 
-  const [shifts,setShifts] = useState(['MORNING','DAY'])
+  const shifts = ['MORNING','DAY']
   const [sessions,setSessions] = useState([])
   const [departments,setDepartments] = useState([])
   const [semesters,setSemesters] = useState([])

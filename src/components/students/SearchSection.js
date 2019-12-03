@@ -1,7 +1,8 @@
 import React,{ useState, useEffect, useContext } from 'react'
 import { InfoContext } from '../../store/InfoContext'
 import { gql } from 'apollo-boost'
-import { useQuery, useLazyQuery } from '@apollo/react-hooks'
+import { useLazyQuery } from '@apollo/react-hooks'
+import { withRouter } from 'react-router-dom'
 
 const GET_DATA = gql`
   query Students($query: String,$department: ID,$semester: ID,$first: Int,$skip: Int,$orderBy: String){
@@ -15,7 +16,7 @@ const GET_DATA = gql`
   }
 `
 
-const SearchSection = ({ setStudents }) => {
+const SearchSection = ({setStudents}) => {
   const data = useContext(InfoContext)
   const [semesters,setSemesters] = useState([])
   const [departments,setDepartments] = useState([])
@@ -32,7 +33,7 @@ const SearchSection = ({ setStudents }) => {
       setSemesters(data.semesters)
       setDepartments(data.departments)
     }
-  })
+  },[data])
 
   const variables = { first, skip, orderBy }
   if(department){ variables.department = department }
@@ -52,15 +53,15 @@ const SearchSection = ({ setStudents }) => {
   }
 
   return (
-    <div className="my-3 py-4 col-10" style={{background: "#E9ECEF"}}>
+    <div className="my-3 py-4 col-12" style={{background: "#E9ECEF"}}>
       <form onSubmit={submitHandler}>
         <div className="row">
 
-          <div className="col-md-3">
+          <div className="col-md-3 my-2">
             <input value={query} onChange={e => setQuery(e.target.value)} type="text" className="form-control" placeholder="Search" />
           </div>
 
-          <div className="col-md-2 d-flex">
+          <div className="col-md-2 d-flex my-2">
             <label className="my-auto mx-2" htmlFor="selectDepartment">Dep: </label>
             <select value={department} onChange={e => setDepartment(e.target.value)} id="selectDepartment" className="custom-select">
               <option value="">All</option>
@@ -70,7 +71,7 @@ const SearchSection = ({ setStudents }) => {
             </select>
           </div>
 
-          <div className="col-md-2 d-flex">
+          <div className="col-md-2 d-flex my-2">
             <label className="my-auto mx-2">Sem: </label>
             <select value={semester} onChange={e => setSemester(e.target.value)} className="custom-select">
               <option value="">All</option>
@@ -78,7 +79,7 @@ const SearchSection = ({ setStudents }) => {
             </select>
           </div>
 
-          <div className="col-md-2 d-flex">
+          <div className="col-md-2 d-flex my-2">
             <label className="my-auto mx-2">Sort: </label>
             <select value={orderBy} onChange={e => setOrderBy(e.target.value)} className="custom-select">
               <option value="roll_ASC">Roll</option>
@@ -87,7 +88,7 @@ const SearchSection = ({ setStudents }) => {
             </select>
           </div>
 
-          <div className="col-md-2 d-flex">
+          <div className="col-md-2 d-flex my-2">
             <label className="my-auto mx-2">Item: </label>
             <select value={first} onChange={e => setFirst(e.target.value)} className="custom-select">
               <option seleced="true" value={10}>10</option>
@@ -97,11 +98,11 @@ const SearchSection = ({ setStudents }) => {
               <option value={50}>50</option>
             </select>
           </div>
-          <button type="submit" className={`btn btn-sm btn-info mx-2 ${loading ? 'disabled' : ''}`}>search</button>
+          <button type="submit" className={`btn btn-sm btn-info my-2 mx-2 ${loading ? 'disabled' : ''}`}>search</button>
         </div>
       </form>
     </div>
   )
 }
 
-export default React.memo(SearchSection)
+export default withRouter(React.memo(SearchSection))
