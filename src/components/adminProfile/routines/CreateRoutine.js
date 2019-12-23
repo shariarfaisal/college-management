@@ -17,13 +17,17 @@ const CreateRoutine = ({info,mutate}) => {
   const [error,setError] = useState('')
   const shifts = ['MORNING','DAY']
 
+  const orderBy = "id_DESC"
+  const first = 10
+  const skip = 0
+
   const submitHandler = async e => {
     e.preventDefault()
     try{
       if(title && session && semester && department && shift){
         const { data } = await mutate({
           variables: { title, session, semester, department, shift },
-          refetchQueries: [{ query: routineQuery }]
+          refetchQueries: [{ query: routineQuery,variables:{ orderBy, first, skip } }]
         })
         if(data){
           setSuccess('New Routine created successfully!')

@@ -1,6 +1,6 @@
 import React from 'react'
 import CoreLayout from '../layouts/CoreLayout'
-import HeaderWithNav from '../components/HeaderWithNav'
+import Header from '../components/Header'
 import TeacherRegisterBody from '../components/register/Body'
 import Form from '../components/teacherRegister/Form'
 
@@ -8,7 +8,7 @@ import Form from '../components/teacherRegister/Form'
 const TeacherRegister = (props) => {
   return (
     <CoreLayout>
-      <HeaderWithNav />
+      <Header />
       <TeacherRegisterBody>
         <Form />
       </TeacherRegisterBody>

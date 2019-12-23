@@ -28,7 +28,6 @@ const AddClass = ({routine,mutate}) => {
           setSuccess('Class added successfully!')
           setDay('');setPeriod('');setMentor('');setSubject('');
           setError('')
-          console.log(data);
         }
       }catch(err){
         setError(err.message)

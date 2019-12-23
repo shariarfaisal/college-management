@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'
-// import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 import Input from '../register/Input'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
@@ -55,6 +55,7 @@ const Form = (props) => {
         <Input value={password} set={setPassword} type="password" plh="Password" />
       </div>
       <button className="btn btn-sm btn-info my-3 px-4" type="submit">Submit</button>
+      <p className="my-3">Already have an account? <Link to="/login/teacher">login</Link></p>
     </form>
   )
 }

@@ -1,5 +1,5 @@
 import React,{ useState, useEffect, useContext } from 'react'
-// import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 import Input from '../register/Input'
 import SelectShift from '../register/SelectShift'
 import Select from '../register/Select'
@@ -82,7 +82,7 @@ const Form = (props) => {
 
       </div>
       <button className="btn btn-sm btn-info my-3 px-4" type="submit">Submit</button>
-      <p className="my-3">Already have an account? <a href="/login/student">login</a></p>
+      <p className="my-3">Already have an account? <Link to="/login/student">login</Link></p>
     </form>
   )
 }

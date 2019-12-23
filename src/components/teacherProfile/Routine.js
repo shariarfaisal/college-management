@@ -24,15 +24,11 @@ const filter = data => {
 
 const Routine = (props) => {
   const me = useContext(TeacherMeContext)
-  const [data,setData] = useState(null)
-  useEffect(() => {
-    if(me) setData(me)
-  },[me])
 
   return (
     <div className="row">
       {
-        data && filter(data.classes).map((c,i) => {
+        me && filter(me.classes).map((c,i) => {
           return <Day key={i} {...c}/>
         })
       }

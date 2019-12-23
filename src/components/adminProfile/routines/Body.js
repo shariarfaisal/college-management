@@ -1,4 +1,4 @@
-import React,{ useContext, useState, useEffect } from 'react'
+import React,{ useContext, useState } from 'react'
 import CreateRoutine from './CreateRoutine'
 import {InfoContext} from '../../../store/InfoContext'
 import Routine from './Routine'
@@ -14,7 +14,6 @@ const variable = (args) => {
   return v
 }
 const Body = (props) => {
-  const [routines,setRoutines] = useState([])
   const [search,setSearch] = useState('')
   const info = useContext(InfoContext)
   const args = search.split(',')
@@ -28,11 +27,6 @@ const Body = (props) => {
     setSkip(skip+first)
   }
 
-  useEffect(() => {
-    if(data){
-      setRoutines(data.routines)
-    }
-  },[data])
   return (
     <div className="py-4">
       <div className="row justify-content-center mx-auto " style={{maxWidth: "99%"}}>
@@ -40,10 +34,10 @@ const Body = (props) => {
         <div className="col-md-10">
           <div className="row justify-content-center">
             <Search search={search} setSearch={setSearch}/>
-            {routines.map((r,i) => {
+            {data && data.routines.map((r,i) => {
               return <Routine key={i} {...r} />
             })}
-            {routines.length > 9 && <div onClick={skipper} className="col-12 py-2 my-3 text-center" style={{background: "rgba(184, 192, 199, 0.32)",cursor: 'pointer'}}>
+            {data && data.routines.length > 9 && <div onClick={skipper} className="col-12 py-2 my-3 text-center" style={{background: "rgba(184, 192, 199, 0.32)",cursor: 'pointer'}}>
               <strong>more</strong>
             </div>}
           </div>
