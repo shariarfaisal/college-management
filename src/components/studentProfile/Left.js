@@ -9,10 +9,11 @@ const items = [
   {title: "BookList",to:"/booklist"},
   {title: "Notices",to:"/notices"},
   {title: "Teachers",to:"/teachers"},
-  {title: "Batch mates",to:"/batchmates"},
+  {title: "Students",to:"/students"},
   {title: "Classes",to:"/classes"},
   {title: "Attendences",to:"/attendences"},
   {title: "About",to:"/about"},
+  {title: "Activity",to:"/activity"},
 ]
 
 const logout = (history) => {
@@ -25,7 +26,7 @@ const logout = (history) => {
 
 const Left = (props) => {
   return (
-    <Styles className="col-md-3">
+    <Styles className="col-md-2">
       <ul className="nav flex-column my-5">
         {items.map((item,i) => (
           <li key={i} className="nav-item"><Link to={item.to} className="nav-link my-2">{item.title}</Link></li>

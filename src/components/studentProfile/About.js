@@ -1,7 +1,6 @@
 import React,{ useState,useEffect,useContext} from 'react'
 import { StudentMeContext } from '../../store/StudentMeContext'
 
-
 const About = () => {
   const me = useContext(StudentMeContext)
   const [data,setData] = useState(null)

@@ -2,7 +2,7 @@ import React,{ useState,useEffect,useContext } from 'react'
 import { TeacherMeContext } from '../../store/TeacherMeContext'
 import Day from './Day'
 
-const days = [
+export const days = [
   {id:1,day: 'SATURDAY',classes: []},
   {id:2,day: 'SUNDAY',classes: []},
   {id:3,day: 'MONDAY',classes: []},

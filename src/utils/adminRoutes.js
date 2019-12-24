@@ -1,5 +1,6 @@
 import Settings from '../pages/Admin/Settings'
 import Students from '../pages/Admin/Students'
+import Student from '../pages/Admin/Student'
 import BookList from '../pages/Admin/BookList'
 import Routines from '../pages/Admin/Routines'
 import Routine from '../pages/Admin/Routine'
@@ -15,6 +16,7 @@ export default () => [
   {path: "/",component: Home},
   {path: "/settings",component: Settings},
   {path: "/students",component: Students},
+  {path: "/student/:id",component: Student},
   {path: "/booklists",component: BookList},
   {path: "/routines",component: Routines},
   {path: "/routines/:id",component: Routine},

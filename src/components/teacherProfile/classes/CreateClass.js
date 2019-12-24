@@ -9,14 +9,17 @@ const today = () => {
   return `${i.getDate()>9 ? i.getDate() : '0'+i.getDate()}-${i.getMonth()+1}-${i.getFullYear()}`
 }
 
-const CreateClass = ({ classId, mutate }) => {
+const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','SATURDAY']
+
+const CreateClass = ({ classId, day, mutate }) => {
   const [date,setDate] = useState(today())
   const [success,setSuccess] = useState('')
   const [error,setError] = useState('')
+  const isToday = days.findIndex(i => i === day.day) === new Date().getDay()
 
   const submitHandler = async e => {
     e.preventDefault()
-    if(date){
+    if(date && isToday){
       try{
         const { data } = await mutate({
           variables:{ class: classId, date },
@@ -26,7 +29,7 @@ const CreateClass = ({ classId, mutate }) => {
           setDate("")
         }
       }catch(err){
-        setError(err.message)
+        setError(err.message.replace('GraphQL error: ',''))
       }
     }
   }
@@ -39,10 +42,10 @@ const CreateClass = ({ classId, mutate }) => {
             type="text"
             className="form-control m-2 disabled"
             value={date}
-            onChange={e => setDate(e.target.value)}
-            placeholder="01-01-2019"
+            disabled={true}
+            placeholder={date}
           />
-        <button className="btn btn-info m-2">create</button>
+        <button disabled={!isToday} className="btn btn-info m-2">create</button>
       </form>
     </div>
   )

@@ -57,11 +57,11 @@ const SearchSection = ({setStudents}) => {
       <form onSubmit={submitHandler}>
         <div className="row">
 
-          <div className="col-md-3 my-2">
+          <div className="col-md-3 col-lg-3 my-2">
             <input value={query} onChange={e => setQuery(e.target.value)} type="text" className="form-control" placeholder="Search" />
           </div>
 
-          <div className="col-md-2 d-flex my-2">
+          <div className="col-md-4 col-lg-2 d-flex my-2">
             <label className="my-auto mx-2" htmlFor="selectDepartment">Dep: </label>
             <select value={department} onChange={e => setDepartment(e.target.value)} id="selectDepartment" className="custom-select">
               <option value="">All</option>
@@ -71,7 +71,7 @@ const SearchSection = ({setStudents}) => {
             </select>
           </div>
 
-          <div className="col-md-2 d-flex my-2">
+          <div className="col-md-4 col-lg-2 d-flex my-2">
             <label className="my-auto mx-2">Sem: </label>
             <select value={semester} onChange={e => setSemester(e.target.value)} className="custom-select">
               <option value="">All</option>
@@ -79,7 +79,7 @@ const SearchSection = ({setStudents}) => {
             </select>
           </div>
 
-          <div className="col-md-2 d-flex my-2">
+          <div className="col-md-4 col-lg-2 d-flex my-2">
             <label className="my-auto mx-2">Sort: </label>
             <select value={orderBy} onChange={e => setOrderBy(e.target.value)} className="custom-select">
               <option value="roll_ASC">Roll</option>
@@ -88,7 +88,7 @@ const SearchSection = ({setStudents}) => {
             </select>
           </div>
 
-          <div className="col-md-2 d-flex my-2">
+          <div className="col-md-4 col-lg-2 d-flex my-2">
             <label className="my-auto mx-2">Item: </label>
             <select value={first} onChange={e => setFirst(e.target.value)} className="custom-select">
               <option seleced="true" value={10}>10</option>

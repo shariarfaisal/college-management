@@ -5,11 +5,6 @@ import CreateClass from './CreateClass'
 import Classes from './Classes'
 import query from './query'
 
-// const today = () => {
-//   const i = new Date()
-//   return `${i.getDate()>9 ? i.getDate() : '0'+i.getDate()}-${i.getMonth()+1}-${i.getFullYear()}`
-// }
-
 
 const Body = ({ classId }) => {
   const { data } = useQuery(query,{
@@ -19,8 +14,8 @@ const Body = ({ classId }) => {
   return (
     <div className="row">
       {data && <ClassSection cls={data.class}/>}
-      <CreateClass  classId={classId}/>
-      {data && <Classes classes={data.class.attendenceClasses}/>}
+      {data && <CreateClass  classId={classId} day={data.class.day}/>}
+      {data && <Classes classes={data.class.attendenceClasses} classId={classId}/>}
     </div>
   )
 }

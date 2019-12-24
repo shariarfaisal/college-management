@@ -6,7 +6,7 @@ const Body = ({children}) => {
     <div className="mx-auto" style={{width: '80%'}}>
       <div className="row justify-content-around">
         <Left />
-        <div className="col-md-8 my-5">
+        <div className="col-md-9 my-5">
           {children}
         </div>
       </div>
