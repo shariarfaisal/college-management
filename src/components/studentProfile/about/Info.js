@@ -1,15 +1,10 @@
-import React,{ useState,useEffect,useContext} from 'react'
-import { StudentMeContext } from '../../store/StudentMeContext'
+import React from 'react'
+import styled from 'styled-components'
 
-const About = () => {
-  const me = useContext(StudentMeContext)
-  const [data,setData] = useState(null)
-  useEffect(() => {
-    if(me) setData(me)
-  },[me])
 
+const Info = ({ data, setIs }) => {
   return (
-    data && <div className="jumbotron">
+    <Styling className="jumbotron">
       <h1 className="my-4">About</h1>
       <p><strong>Name: </strong>{data.name}</p>
       <p><strong>Email: </strong>{data.email}</p>
@@ -20,8 +15,26 @@ const About = () => {
       <p><strong>Department: </strong>{data.department.name}</p>
       <p><strong>Semester: </strong>{data.semester.name}</p>
       <p><strong>Shift: </strong>{data.shift}</p>
-    </div>
+      <div onClick={e => setIs(true)} className="update-info">
+        <span>Update Your Info</span>
+      </div>
+    </Styling>
   )
 }
 
-export default About
+const Styling = styled.div`
+  position: relative;
+  transition: .3s;
+  .update-info{
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    color: #17A2B8;
+    &:hover{
+      cursor: pointer
+      text-decoration: underline;
+    }
+  }
+`
+
+export default Info

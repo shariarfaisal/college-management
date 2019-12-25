@@ -9,7 +9,7 @@ const DayIn = ({id,day,classes,dayValue,routineId}) => {
           <h3 className="my-2 text-dark text-center">{day}</h3>
         </div>
         {
-          classes.map((c,i) => <Day key={i} {...c} routineId={routineId}/>)
+          classes.map((c,i) => <Day key={i} {...c}/>)
         }
       </div>
     </div>

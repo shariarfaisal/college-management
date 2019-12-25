@@ -1,13 +1,13 @@
 import React from 'react'
 import StudentLayout from '../../layouts/StudentLayout'
-import AboutSection from '../../components/studentProfile/about/About'
+import Body from '../../components/studentProfile/BookList'
 
-const About = (props) => {
+const BookList = (props) => {
   return (
     <StudentLayout>
-      <AboutSection/>
+      <Body />
     </StudentLayout>
   )
 }
 
-export default About
+export default BookList

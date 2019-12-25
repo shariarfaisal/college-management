@@ -8,7 +8,11 @@ export const StudentMeContext = createContext()
 const GET_DATA = gql`
   query{
     studentMe{
-      id name email phone address roll reg shift bookLists{ id probidan books{ id name code }} department{ id name } semester{ id name } session{ id year }
+      id name email phone address roll reg shift
+      bookLists{ id probidan books{ id name code }}
+      department{ id name }
+      semester{ id name }
+      session{ id year }
     }
   }
 `

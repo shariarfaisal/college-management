@@ -6,6 +6,7 @@ const Thead = () => (
       <th scope="col">Roll</th>
       <th scope="col">Name</th>
       <th scope="col">Department</th>
+      <th scope="col">Shift</th>
       <th scope="col">Semester</th>
     </tr>
   </thead>

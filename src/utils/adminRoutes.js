@@ -11,6 +11,7 @@ import Semesters from '../pages/Admin/Semesters'
 import Sessions from '../pages/Admin/Sessions'
 import Notices from '../pages/Admin/Notices'
 import Attendence from '../pages/Admin/Attendence'
+import Admin404 from '../pages/Admin404'
 
 export default () => [
   {path: "/",component: Home},
@@ -26,4 +27,5 @@ export default () => [
   {path: "/sessions",component: Sessions},
   {path: "/notices",component: Notices},
   {path: "/attendence",component: Attendence},
+  {path: '',component: Admin404},
 ]

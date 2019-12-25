@@ -13,6 +13,9 @@ const Body = (props) => {
   const { data } = useQuery(query,{
     variables: { id: props.id }
   })
+  if(data){
+    console.log(data);
+  }
   return (
     <Styles className="">
       {data && <RoutineInfo routine={data.routine}/>}
@@ -21,7 +24,7 @@ const Body = (props) => {
       {data && <AddClass routine={data.routine} />}
       <div className="row">
         {data && data.routine.days.map((d,i) => {
-          return <DayIn key={i} {...d} routineId={props.id}/>
+          return <DayIn key={i} {...d} />
         })}
       </div>
     </Styles>

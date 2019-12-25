@@ -1,13 +1,13 @@
 import React from 'react'
 import StudentLayout from '../../layouts/StudentLayout'
-import AboutSection from '../../components/studentProfile/about/About'
+import Body from '../../components/studentProfile/routine/Body'
 
-const About = (props) => {
+const Routine = (props) => {
   return (
     <StudentLayout>
-      <AboutSection/>
+      <Body />
     </StudentLayout>
   )
 }
 
-export default About
+export default Routine

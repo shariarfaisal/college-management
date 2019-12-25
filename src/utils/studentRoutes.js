@@ -6,6 +6,9 @@ import StudentNotes from '../pages/Student/Notes'
 import Activity from '../pages/Student/Activity'
 import Student404 from '../pages/Student404'
 import Attendences from '../pages/Student/Attendences'
+import BookList from '../pages/Student/BookList'
+import Routine from '../pages/Student/Routine'
+import Teachers from '../pages/Student/Teachers'
 
 export default () => [
   {path: '/',component: StudentHome},
@@ -15,5 +18,8 @@ export default () => [
   {path: '/notes',component: StudentNotes},
   {path: '/attendences',component: Attendences},
   {path: '/activity',component: Activity},
+  {path: '/booklist',component: BookList},
+  {path: '/routine',component: Routine},
+  {path: '/teachers',component: Teachers},
   {path: '',component: Student404},
 ]

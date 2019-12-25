@@ -11,6 +11,9 @@ const GET_DATA = gql`
       id
       name
       roll
+      shift
+      email
+      phone
       department{ id name }
       semester{ id name }
       session{ id year }
