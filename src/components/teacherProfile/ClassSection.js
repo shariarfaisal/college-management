@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const des = a => a === 45 ? 3 : 4
-const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','SATURDAY']
+const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
 
 const ClassSection = ({period,day,subject,department,semester,id}) => {
   const ab = days.findIndex(i => i === day.day) === new Date().getDay()

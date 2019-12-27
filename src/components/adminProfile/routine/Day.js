@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 import styled from 'styled-components'
 import query from './query'
-const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','SATURDAY']
+const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
 
 const deleteQuery = gql`
   mutation DeleteClass($id: ID!){
