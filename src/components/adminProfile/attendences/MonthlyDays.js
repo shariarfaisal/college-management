@@ -10,7 +10,7 @@ const MonthlyDays = (props) => {
       <div className="list-group pb-3 collapse" id={`month-${props.m}`}>
         {
           props.days.map((d,i) => (
-            <Link key={i} className="list-group-item list-group-item-action" to={`/attendence/${d.id}`}>{d.date}</Link>
+            <Link key={i} className="list-group-item list-group-item-action" to={`/attendences/${d.id}`}>{d.date}</Link>
           ))
         }
       </div>

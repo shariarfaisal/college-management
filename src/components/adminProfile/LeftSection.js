@@ -13,7 +13,7 @@ const items = [
   {title: "Teachers",to:"/teachers"},
   {title: "Students",to:"/students"},
   {title: "Routines",to:"/routines"},
-  {title: "Attendence",to:"/attendence"}
+  {title: "Attendences",to:"/attendences"}
 ]
 
 const logout = (history) => {

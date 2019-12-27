@@ -10,6 +10,7 @@ import Home from '../pages/Admin/Home'
 import Semesters from '../pages/Admin/Semesters'
 import Sessions from '../pages/Admin/Sessions'
 import Notices from '../pages/Admin/Notices'
+import Attendences from '../pages/Admin/Attendences'
 import Attendence from '../pages/Admin/Attendence'
 import Admin404 from '../pages/Admin404'
 
@@ -26,6 +27,7 @@ export default () => [
   {path: "/semesters",component: Semesters},
   {path: "/sessions",component: Sessions},
   {path: "/notices",component: Notices},
-  {path: "/attendence",component: Attendence},
+  {path: "/attendences",component: Attendences},
+  {path: "/attendences/:id",component: Attendence},
   {path: '',component: Admin404},
 ]

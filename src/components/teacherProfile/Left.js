@@ -9,7 +9,6 @@ const items = [
   {title: "Notices",to:"/notices"},
   {title: "Students",to:"/students"},
   {title: "Routine",to:"/routine"},
-  {title: "Attendence",to:"/attendence"},
   {title: "About",to:"/about"},
 ]
 

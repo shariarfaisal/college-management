@@ -1,4 +1,5 @@
 import React,{ useState } from 'react'
+import { Link } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
 
@@ -20,7 +21,7 @@ const Student = ({roll,name,id,present:pre,mutate,classId}) => {
   return (
     <tr>
       <th scope="row">{roll}</th>
-      <td>{name}</td>
+      <td><Link className="text-dark" to={`/student/${id}`}>{name}</Link></td>
       {present === null && <td className="d-flex">
         <button onClick={e => submitHandler(false)} className="btn btn-sm btn-danger mx-2">false</button>
         <button onClick={e => submitHandler(true)} className="btn btn-sm btn-success mx-2">true</button>

@@ -2,12 +2,10 @@ import React from 'react'
 import AdminLayout from '../../layouts/AdminLayout'
 import Body from '../../components/adminProfile/attendence/Body'
 
-const Attendence = () => {
+const Attendence = ({ match }) => {
   return (
     <AdminLayout>
-      <div className="col-md-12">
-        <Body />
-      </div>
+      <Body id={match.params.id} />
     </AdminLayout>
   )
 }
