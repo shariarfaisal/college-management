@@ -7,7 +7,6 @@ import AddSession from './AddSession'
 
 const Body = (props) => {
   const { data } = useQuery(sessionQuery)
-  console.log(data);
   return (
     <Styles className="p-3 my-2">
       <AddSession />

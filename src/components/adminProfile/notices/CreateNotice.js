@@ -1,18 +1,17 @@
-import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
+import React,{ useState, memo } from 'react'
 import { graphql } from 'react-apollo'
-import CloseAlert from '../../CloseAlert'
-import { query } from './Notices'
+import Alert from '../../Alert'
+import query from './query'
+import useInput from '../../hooks/useInput'
+import mutation from './mutation'
+
+const [first,skip,orderBy] = [15, 0, "createdAt_DESC"]
 
 const CreateNotice = ({mutate}) => {
-  const [title,setTitle] = useState('')
-  const [text,setText] = useState('')
+  const [title,bindTitle,resetTitle] = useInput('')
+  const [text,bindText,resetText] = useInput('')
   const [success,setSuccess] = useState('')
   const [error,setError] = useState('')
-
-  const first = 15
-  const skip = 0
-  const orderBy = "createdAt_DESC"
 
   const submitHandler = async e => {
     e.preventDefault()
@@ -24,8 +23,8 @@ const CreateNotice = ({mutate}) => {
         })
         if(data){
           setSuccess('Notice created!');
-          console.log(data);
-          setTitle('');setText('');
+          resetTitle();
+          resetText();
           setError('')
         }
       }catch(err){
@@ -38,37 +37,14 @@ const CreateNotice = ({mutate}) => {
   return (
     <div className="p-3 my-3" style={{background: "rgba(200, 201, 202, 0.09)"}}>
       <h3 style={{cursor: 'pointer'}} className="mb-2" data-toggle="collapse" data-target="#notice-collapse">Publish a notice +</h3>
-        {success && <CloseAlert type="success">{success}</CloseAlert>}
-        {error && <CloseAlert type="danger">{error}</CloseAlert>}
+        <Alert success={success} error={error} />
         <form onSubmit={submitHandler} className="collapse mt-3" id="notice-collapse">
-          <input
-            type="text"
-            className="form-control my-2"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            placeholder="title..."
-          />
-          <textarea
-            className="form-control my-2"
-            value={text}
-            onChange={e => setText(e.target.value)}
-            placeholder="description..."
-          />
+          <input {...bindTitle} className="form-control my-2" placeholder="title..." />
+          <textarea className="form-control my-2" {...bindText} placeholder="description..." />
           <button type="submit" className="btn btn-info m-2 px-3">submit</button>
         </form>
     </div>
   )
 }
 
-const mutation = gql`
-  mutation CreateNotice($title: String!,$text: String!){
-    createNotice(data:{
-      title: $title,
-      text: $text
-    }){
-      id title text
-    }
-  }
-`
-
-export default graphql(mutation)(CreateNotice)
+export default graphql(mutation)(memo(CreateNotice))

@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, memo } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import tcv from './timeConverter'
 
@@ -37,4 +37,4 @@ const NoticeModal = ({title,text,id,createdAt}) => {
   )
 }
 
-export default NoticeModal
+export default memo(NoticeModal)

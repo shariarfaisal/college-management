@@ -1,23 +1,16 @@
 import React,{ useState,useEffect } from 'react'
 import AddDay from './AddDay'
-import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
 import Days from './Days'
 import months from './months'
 import dayToMonthConverter from './dayToMonthConverter'
+import { attendenceDays } from './query'
 
-export const query = gql`
-  query AttendenceDays($query: String){
-    attendenceDays(query: $query){
-      id date
-    }
-  }
-`
 
 const Body = (props) => {
   const [year,setYear] = useState(new Date().getFullYear())
   const [mnths,setMnths] = useState(null)
-  const { data } = useQuery(query,{variables: { query: year.toString() } })
+  const { data } = useQuery(attendenceDays,{variables: { query: year.toString() } })
 
   useEffect(() => {
     if(data){

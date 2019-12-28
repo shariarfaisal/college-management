@@ -1,17 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import SessionItem from './SessionItem'
 
 const Sessions = ({sessions}) => {
   return (
     <div>
       <ul className="nav flex-column text-center">
-        {
-          sessions.map((s,i) => (
-            <li key={i} className="nav-item">
-              <Link style={{display: "inline-block"}} to={`session/${s.id}`} className="nav-link text-muted">{s.year}</Link>
-            </li>
-          ))
-        }
+        {sessions.map((s,i) => <SessionItem key={i} {...s} /> )}
       </ul>
     </div>
   )

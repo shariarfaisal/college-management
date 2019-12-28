@@ -1,12 +1,9 @@
-import React from 'react'
+import React,{ memo } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { periodsQuery } from './query'
 
 const SelectPeriod = ({period,setPeriod}) => {
-  const { data, error }  = useQuery(periodsQuery)
-  if(error){
-    console.log(error);
-  }
+  const { data }  = useQuery(periodsQuery)
   return (
     <select onChange={e => setPeriod(e.target.value)} className="m-2 custom-select" value={period}>
       <option value="">Select period</option>
@@ -17,4 +14,4 @@ const SelectPeriod = ({period,setPeriod}) => {
   )
 }
 
-export default SelectPeriod
+export default memo(SelectPeriod)

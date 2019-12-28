@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ memo } from 'react'
 import { Link } from 'react-router-dom'
 
 
@@ -13,4 +13,4 @@ const Routine = ({id,title,department,session,semester}) => (
 
 
 
-export default Routine
+export default memo(Routine)

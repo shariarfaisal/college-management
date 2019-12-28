@@ -1,14 +1,15 @@
 import React,{ useState } from 'react'
-// import PropTypes from 'prop-types'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import CloseAlert from '../../CloseAlert'
+import Alert from '../../Alert'
 import { depQuery } from '../queries'
+import useInput from '../../hooks/useInput'
+import mutation from './mutation'
 
 const AddDepartment = (props) => {
-  const [name,setName] = useState('')
+  const [name,bindName,resetName] = useInput('')
   const [success,setSuccess] = useState('')
   const [error,setError] = useState('')
+
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -18,9 +19,8 @@ const AddDepartment = (props) => {
           variables:{ name },
           refetchQueries: [{ query: depQuery }]
         })
-        setName("")
         if(data.createDepartment){
-          setName('')
+          resetName()
           setSuccess(`New Department ${data.createDepartment.name} created successfully!`)
           setError('')
         }
@@ -34,14 +34,10 @@ const AddDepartment = (props) => {
   return (
     <div className="col-12 my-2 p-3" style={{background: "#c8c9ca17"}}>
       <form onSubmit={submitHandler}>
-      {success && <CloseAlert type="success">{success}</CloseAlert>}
-      {error && <CloseAlert type="danger">{error}</CloseAlert>}
+        <Alert success={success} error={error} />
         <input
-          type="text"
+          {...bindName}
           className="form-control my-2"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          id="department"
           placeholder="Department Name"
         />
         <button type="submit" className="btn btn-info px-4">Add</button>
@@ -50,15 +46,6 @@ const AddDepartment = (props) => {
   )
 }
 
-const mutation = gql`
-  mutation CreateDepartment($name: String!){
-    createDepartment(data:{
-      name: $name
-    }){
-      id
-      name
-    }
-  }
-`
+
 
 export default graphql(mutation)(AddDepartment)

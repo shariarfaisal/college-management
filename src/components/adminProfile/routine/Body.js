@@ -1,6 +1,5 @@
-import React from 'react'
+import React,{ Fragment } from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import styled from 'styled-components'
 import RoutineInfo from './RoutineInfo'
 import DayIn from './DayIn'
 import AddDays from './AddDays'
@@ -13,29 +12,23 @@ const Body = (props) => {
   const { data } = useQuery(query,{
     variables: { id: props.id }
   })
-  if(data){
-    console.log(data);
-  }
+
   return (
-    <Styles className="">
-      {data && <RoutineInfo routine={data.routine}/>}
-      {data && data.routine.days.length !== 7 && <AddDays id={data.routine.id} days={data.routine.days}/>}
-      <CreatePeriod />
-      {data && <AddClass routine={data.routine} />}
-      <div className="row">
-        {data && data.routine.days.map((d,i) => {
-          return <DayIn key={i} {...d} />
-        })}
-      </div>
-    </Styles>
+    <div style={{width: '100%'}}>
+      {data &&
+        <Fragment>
+          <RoutineInfo routine={data.routine}/>
+          {data.routine.days.length !== 7 && <AddDays id={data.routine.id} days={data.routine.days}/>}
+          <CreatePeriod />
+          <AddClass routine={data.routine} />
+          <div className="row">
+            {data.routine.days.map((d,i) => <DayIn key={i} {...d} />)}
+          </div>
+        </Fragment>
+      }
+    </div>
   )
 }
 
-
-
-const Styles = styled.div`
-  width: 100%;
-
-`
 
 export default Body

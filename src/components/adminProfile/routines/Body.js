@@ -5,6 +5,7 @@ import Routine from './Routine'
 import { useQuery } from '@apollo/react-hooks'
 import routineQuery from './routineQuery'
 import Search from './Search'
+import More from './More'
 
 const variable = (args) => {
   const v = {}
@@ -17,30 +18,23 @@ const Body = (props) => {
   const [search,setSearch] = useState('')
   const info = useContext(InfoContext)
   const args = search.split(',')
-  const orderBy = "id_DESC"
-  const first = 10
+  const [orderBy,first] = ["id_DESC",10]
   const [skip,setSkip] = useState(0)
   const variables = {...variable(args),orderBy,first,skip}
   const { data } = useQuery(routineQuery,{ variables })
 
-  const skipper = e => {
-    setSkip(skip+first)
-  }
+  const skipper = e => setSkip(skip+first)
 
   return (
     <div className="py-4">
       <div className="row justify-content-center mx-auto " style={{maxWidth: "99%"}}>
         {info.departments && <CreateRoutine info={info}/>}
         <div className="col-md-10">
-          <div className="row justify-content-center">
+          {data && <div className="row justify-content-center">
             <Search search={search} setSearch={setSearch}/>
-            {data && data.routines.map((r,i) => {
-              return <Routine key={i} {...r} />
-            })}
-            {data && data.routines.length > 9 && <div onClick={skipper} className="col-12 py-2 my-3 text-center" style={{background: "rgba(184, 192, 199, 0.32)",cursor: 'pointer'}}>
-              <strong>more</strong>
-            </div>}
-          </div>
+            {data.routines.map((r,i) => <Routine key={i} {...r} />)}
+            <More length={data.routines.length} skipper={skipper}/>
+          </div>}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ memo } from 'react'
 import {Link} from 'react-router-dom'
 
 const DepartmentItem = ({id,name,students}) => {
@@ -12,4 +12,4 @@ const DepartmentItem = ({id,name,students}) => {
   )
 }
 
-export default DepartmentItem
+export default memo(DepartmentItem)
