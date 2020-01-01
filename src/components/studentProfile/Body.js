@@ -1,5 +1,5 @@
 import React from 'react'
-import Left from './Left'
+import Left from './left/Index'
 import styled from 'styled-components'
 
 const Body = ({children}) => {

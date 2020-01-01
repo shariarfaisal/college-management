@@ -1,6 +1,6 @@
 import React from 'react'
 import StudentLayout from '../../layouts/StudentLayout'
-import NotesSection from '../../components/studentProfile/Notes'
+import NotesSection from '../../components/studentProfile/notes/Index'
 
 const Notes = (props) => {
   return (

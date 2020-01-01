@@ -1,21 +1,17 @@
-import React,{ useState,useEffect,useContext} from 'react'
-import { StudentMeContext } from '../../../store/StudentMeContext'
+import React,{ useState } from 'react'
 import Info from './Info'
 import Update from './Update'
 import { withRouter } from 'react-router-dom'
+import useMe from '../useMe'
 
 const About = (props) => {
   const [isUpdateMode,setIsUpdateMode] = useState(props.location.search.replace('?',''))
-  const me = useContext(StudentMeContext)
-  const [data,setData] = useState(null)
-  useEffect(() => {
-    if(me) setData(me)
-  },[me])
+  const data = useMe()
 
   return (
-    <div>
-      {data && !isUpdateMode && <Info data={data} setIs={setIsUpdateMode}/>}
-      {data && isUpdateMode && <Update {...data}  setIs={setIsUpdateMode}/>}
+    data && <div>
+      { !isUpdateMode && <Info data={data} setIs={setIsUpdateMode}/>}
+      {isUpdateMode && <Update {...data}  setIs={setIsUpdateMode}/>}
     </div>
   )
 }

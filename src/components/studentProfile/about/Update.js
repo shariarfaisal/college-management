@@ -1,11 +1,10 @@
 import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import styled from 'styled-components'
 import Input from '../../register/Input'
 import UpdateSemester from './UpdateSemester'
 import studentQuery from './studentQuery'
 import { withRouter } from 'react-router-dom'
+import { updateStudent } from './mutations'
 
 const Update = (props) => {
   const [name,setName] = useState(props.name)
@@ -37,7 +36,7 @@ const Update = (props) => {
   }
 
   return (
-    <Styling className="jumbotron">
+    <div className="jumbotron" style={{transition: '.3s'}}>
       <h3>Update Your Information</h3>
       {success && <p className="text-center text-success">{success}</p>}
       {error && <p className="text-center text-success">{error}</p>}
@@ -54,21 +53,9 @@ const Update = (props) => {
           <button type="submit" className="btn btn-sm btn-info mx-2">save</button>
         </div>
       </form>
-    </Styling>
+    </div>
   )
 }
 
-const Styling = styled.div`
-  transition: .3s;
-`
 
-const mutation = gql`
-  mutation UpdateStudent($name: String,$email: String,$phone: String,$address: String,$semester: ID){
-    updateStudent(data:{
-      name: $name,email: $email,phone: $phone,address: $address,semester: $semester
-    }){
-      id
-    }
-  }
-`
-export default graphql(mutation)(withRouter(Update))
+export default graphql(updateStudent)(withRouter(Update))

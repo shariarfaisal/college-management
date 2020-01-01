@@ -1,8 +1,8 @@
 import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import CloseAlert from '../CloseAlert'
-import query from './query'
+import Alert from '../../Alert'
+import query from './notesQuery'
+import { createNote } from './mutations'
 
 const  AddNote = (props) => {
   const [title,setTitle] = useState('')
@@ -32,9 +32,7 @@ const  AddNote = (props) => {
 
   return (
     <div className="collapse" id="collapse-note">
-    {success && <CloseAlert type="success">{success}</CloseAlert>}
-    {error && <CloseAlert type="danger">Something wrong!</CloseAlert>}
-
+      <Alert success={success} error={error} />
       <form onSubmit={submitHandler} className="my-3">
         <input
           type="text"
@@ -57,14 +55,5 @@ const  AddNote = (props) => {
   )
 }
 
-const mutation = gql`
-  mutation CreateNote($title: String!,$text: String!){
-    createNote(data:{
-      title: $title,text: $text
-    }){
-      id title text
-    }
-  }
-`
 
-export default graphql(mutation)(AddNote)
+export default graphql(createNote)(AddNote)

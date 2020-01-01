@@ -1,13 +1,9 @@
-import React,{ useState,useEffect,useContext} from 'react'
-import { StudentMeContext } from '../../store/StudentMeContext'
+import React from 'react'
 import Report from '../student/Report'
+import useMe from './useMe'
 
 const Activity = (props) => {
-  const me = useContext(StudentMeContext)
-  const [data,setData] = useState(null)
-  useEffect(() => {
-    if(me) setData(me)
-  },[me])
+  const data = useMe()
 
   return (
     <div>
