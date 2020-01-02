@@ -1,5 +1,5 @@
-import React,{ useState,useEffect,useContext } from 'react'
-import { TeacherMeContext } from '../../store/TeacherMeContext'
+import React from 'react'
+import useMe from '../useMe'
 import Day from './Day'
 
 export const days = [
@@ -23,14 +23,12 @@ const filter = data => {
 
 
 const Routine = (props) => {
-  const me = useContext(TeacherMeContext)
+  const me = useMe()
 
   return (
     <div className="row">
       {
-        me && filter(me.classes).map((c,i) => {
-          return <Day key={i} {...c}/>
-        })
+        me && filter(me.classes).map((c,i) => <Day key={i} {...c}/>)
       }
     </div>
   )

@@ -1,12 +1,12 @@
 import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
 import CloseAlert from '../../CloseAlert'
 import query from './query'
+import { createAttendenceClass } from './mutations'
 
 const today = () => {
   const i = new Date()
-  return `${i.getDate()>9 ? i.getDate() : '0'+i.getDate()}-${i.getMonth()+1}-${i.getFullYear()}`
+  return `${i.getDate()>9 ? i.getDate() : '0'+i.getDate()}-${i.getMonth()+1 > 9 ? i.getMonth()+1 : `0${i.getMonth()+1}`}-${i.getFullYear()}`
 }
 
 const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','SATURDAY']
@@ -25,9 +25,6 @@ const CreateClass = ({ classId, day, mutate }) => {
           variables:{ class: classId, date },
           refetchQueries: [{ query,variables:{ id: classId } }]
         })
-        if(data){
-          setDate("")
-        }
       }catch(err){
         setError(err.message.replace('GraphQL error: ',''))
       }
@@ -51,15 +48,5 @@ const CreateClass = ({ classId, day, mutate }) => {
   )
 }
 
-const mutation = gql`
-  mutation CreateAttendenceClass($class: ID!,$date: String!){
-    createAttendenceClass(data:{
-      class: $class,
-      date: $date
-    }){
-      id
-    }
-  }
-`
 
-export default graphql(mutation)(CreateClass)
+export default graphql(createAttendenceClass)(CreateClass)

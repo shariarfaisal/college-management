@@ -31,7 +31,7 @@ const AddDay = ({ mutate, year }) => {
               variables: { date }
             }
             if(i === Mnth.td){
-              variables.refetchQueries = [{ attendenceDays,variables:{ query: year.toString() } }]
+              variables.refetchQueries = [{ query: attendenceDays,variables:{ query: year.toString() } }]
             }
             const { data } = await mutate(variables)
           }

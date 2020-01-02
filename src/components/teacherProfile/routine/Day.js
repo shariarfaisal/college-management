@@ -18,9 +18,7 @@ const Day = ({id,day,classes}) => {
     <div className="col-12 bg-light mb-3 py-2">
       <div className="row justify-content-center">
         <h3 className="col-12 my-2 text-dark text-center">{day}</h3>
-        {
-          cls.map((c,i) => <ClassSection key={i} {...c} />)
-        }
+        {cls.map((c,i) => <ClassSection key={i} {...c} />)}
       </div>
     </div>
   )

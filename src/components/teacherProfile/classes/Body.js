@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ Fragment } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import ClassSection from './ClassSection'
 import CreateClass from './CreateClass'
@@ -13,9 +13,11 @@ const Body = ({ classId }) => {
 
   return (
     <div className="row">
-      {data && <ClassSection cls={data.class}/>}
-      {data && <CreateClass  classId={classId} day={data.class.day}/>}
-      {data && <Classes classes={data.class.attendenceClasses} classId={classId}/>}
+      {data && <Fragment>
+        <ClassSection cls={data.class}/>
+        <CreateClass  classId={classId} day={data.class.day}/>
+        <Classes classes={data.class.attendenceClasses} classId={classId}/>
+      </Fragment>}
     </div>
   )
 }
