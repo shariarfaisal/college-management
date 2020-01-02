@@ -19,6 +19,11 @@ const Styles = styled.div`
         border-radius: 100px;
       }
     }
+    .active{
+      color: black;
+      background: lightblue;
+      border-radius: 100px;
+    }
   }
 `
 
