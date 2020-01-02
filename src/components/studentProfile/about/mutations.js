@@ -9,3 +9,11 @@ export const updateStudent = gql`
     }
   }
 `
+
+export const updateStudentPassword = gql`
+  mutation UpdateStudentPassword($oldPassword: String!,$newPassword: String!){
+    updateStudentPassword(oldPassword: $oldPassword,newPassword: $newPassword){
+      id name
+    }
+  }
+`

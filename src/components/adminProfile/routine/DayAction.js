@@ -5,9 +5,9 @@ const DayAction = ({ onDeleteHandler }) => {
   return (
     <Styling className="clone dropdown dropleft">
       <div id="dropdownMenuButton" data-toggle="dropdown">:</div>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <div class="dropdown-item" >edit</div>
-        <div onClick={onDeleteHandler} class="dropdown-item" >delete</div>
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div className="dropdown-item" >edit</div>
+        <div onClick={onDeleteHandler} className="dropdown-item" >delete</div>
       </div>
     </Styling>
   )

@@ -7,7 +7,6 @@ const Activity = (props) => {
 
   return (
     <div>
-      <h3 className="text-center">Activity</h3>
       {data && data.bookLists.length !== 0 && <Report {...data}/>}
     </div>
   )

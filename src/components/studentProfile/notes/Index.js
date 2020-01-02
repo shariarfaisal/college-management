@@ -1,32 +1,28 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import AddNote from './AddNote'
 import { useQuery } from '@apollo/react-hooks'
 import query from './notesQuery'
-import searchFilter from './searchFilter'
-import NoteItem from './NoteItem'
 import Search from './Search'
-import useInput from '../../hooks/useInput'
+import Notes from './Notes'
 
-const Notes = (props) => {
-  const { data } = useQuery(query)
-  const [search,bindSearch] = useInput('')
+const [first,orderBy] = [20,'id_DESC']
+
+const Index = (props) => {
+  const [skip,setSkip] = useState(0)
+  const [search,setSearch] = useState('')
+  const { data } = useQuery(query,{
+    variables: { query: search, first, skip, orderBy}
+  })
 
   return (
     <div>
-      <Search bindSearch={bindSearch}/>
-      <div className="p-3 mb-4">
-        <h3 className="my-2 text-info" data-toggle="collapse" data-target="#collapse-note" style={{cursor: "pointer"}}>Add Note +</h3>
-        <AddNote />
-      </div>
-      <div className="row">
-        {
-          data && searchFilter(data.notes,search).map((d,i) => <NoteItem key={i} {...d}/>)
-        }
-      </div>
+      <Search setSearch={setSearch}/>
+      <AddNote />
+      {data && data.notes.length !== 0 && <Notes skip={skip} setSkip={setSkip} first={first} search={search} data={data}/>}
     </div>
   )
 }
 
 
 
-export default Notes
+export default Index

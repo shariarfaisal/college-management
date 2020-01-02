@@ -1,13 +1,13 @@
 import React,{ useState } from 'react'
 import { graphql } from 'react-apollo'
 import Alert from '../../Alert'
-import query from './notesQuery'
-import { createNote } from './mutations'
+import query from './query'
+import { updateNote } from './mutations'
 const [first,orderBy,skip] = [20,'id_DESC',0]
 
-const  AddNote = (props) => {
-  const [title,setTitle] = useState('')
-  const [text,setText] = useState('')
+const  Update = ({ title: ttl, text: txt, id, mutate, setIsUpdate }) => {
+  const [title,setTitle] = useState(ttl)
+  const [text,setText] = useState(txt)
   const [error,setError] = useState(false)
   const [success,setSuccess] = useState('')
 
@@ -15,17 +15,16 @@ const  AddNote = (props) => {
     e.preventDefault()
     if(title && text){
       try{
-        const {data} = await props.mutate({
-          variables: { title, text },
-          refetchQueries: [{ query, variables:{ query: '',first, orderBy, skip} }]
+        const {data} = await mutate({
+          variables: { id, title, text },
+          refetchQueries: [{ query, variables:{ id } }]
         })
         if(data){
-          setSuccess('Note created successfully')
-          setError(false)
-          setTitle('');setText('')
+          setSuccess('Updated successfully')
+          setError('')
         }
       }catch(err){
-        setError(true)
+        setError(err.message)
         setSuccess('')
       }
     }
@@ -33,8 +32,8 @@ const  AddNote = (props) => {
 
   return (
     <div className="p-3 mb-4">
-      <h3 className="my-2 text-info" data-toggle="collapse" data-target="#collapse-note" style={{cursor: "pointer"}}>Add Note +</h3>
-      <div className="collapse" id="collapse-note">
+      <h3 className="my-2 text-info">Update Note</h3>
+      <div>
         <Alert success={success} error={error} />
         <form onSubmit={submitHandler} className="my-3">
           <input
@@ -52,7 +51,8 @@ const  AddNote = (props) => {
             value={text}
             onChange={e => setText(e.target.value)}
           />
-          <button type="submit" className="btn btn-info px-4">add</button>
+          <button onClick={e => setIsUpdate(false)} type="button" className="btn btn-danger px-4 mx-2">cancel</button>
+          <button type="submit" className="btn btn-info px-4">update</button>
         </form>
       </div>
     </div>
@@ -60,4 +60,4 @@ const  AddNote = (props) => {
 }
 
 
-export default graphql(createNote)(AddNote)
+export default graphql(updateNote)(Update)

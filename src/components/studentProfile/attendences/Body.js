@@ -7,6 +7,7 @@ const Body = (props) => {
 
   return (
     <div>
+      <h3 className="text-center my-4">Activity</h3>
       {data && <Attendences {...data}/>}
     </div>
   )
