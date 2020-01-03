@@ -11,6 +11,7 @@ import Routine from '../pages/Student/Routine'
 import Teachers from '../pages/Student/Teachers'
 import Teacher from '../pages/Student/Teacher'
 import Notices from '../pages/Student/Notices'
+import Notice from '../pages/Student/Notice'
 
 export default () => [
   {path: '/',component: Home},
@@ -23,6 +24,7 @@ export default () => [
   {path: '/booklist',component: BookList},
   {path: '/routine',component: Routine},
   {path: '/notices',component: Notices},
+  {path: '/notices/:id',component: Notice},
   {path: '/teachers',component: Teachers},
   {path: '/teachers/:id',component: Teacher},
   {path: '',component: Student404},

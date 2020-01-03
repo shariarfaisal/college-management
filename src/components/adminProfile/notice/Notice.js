@@ -1,9 +1,12 @@
 import React,{ Fragment, useState } from 'react'
+import ReactHtmlParser from 'react-html-parser';
 import { useQuery } from '@apollo/react-hooks'
 import { noticeQuery } from './query'
 import tcv from '../notices/timeConverter'
 import Actions from './Actions'
 import Update from './Update'
+import { admin } from '../../users'
+import GoBack from './GoBack'
 
 function Notice({ id }) {
   const [updateMode,setUpdateMode] = useState(false)
@@ -14,9 +17,14 @@ function Notice({ id }) {
     <div className="mt-4">
       {data && <div className="card" style={{position: 'relative'}}>
         {!updateMode &&<div className="card-body" style={{minHeight: '400px'}}>
-            <h3 className="card-title">{data.notice.title}</h3>
-            <p>{data.notice.text}</p>
-            <Actions setUpdateMode={setUpdateMode} id={data.notice.id}/>
+            <div className="d-flex justify-content-between align-items-center">
+              <h3 className="card-title">{data.notice.title}</h3>
+              <GoBack />
+            </div>
+            <div>
+              {ReactHtmlParser(data.notice.text)}
+            </div>
+            {admin && <Actions setUpdateMode={setUpdateMode} id={data.notice.id}/>}
           </div>}
           {updateMode && <Update setUpdateMode={setUpdateMode} {...data.notice}/>}
           <div className="card-footer">
