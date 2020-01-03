@@ -6,7 +6,7 @@ import InfoContextProvider from '../../store/InfoContext'
 const Routines = (props) => {
   return (
     <AdminLayout>
-      <div className="col-md-12">
+      <div className="col-12">
         <InfoContextProvider>
           <Body />
         </InfoContextProvider>

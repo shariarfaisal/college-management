@@ -5,7 +5,7 @@ import Body from '../../components/adminProfile/attendences/Body'
 const Attendences = () => {
   return (
     <AdminLayout>
-      <div className="col-md-12">
+      <div className="col-xl-10 mx-auto">
         <Body />
       </div>
     </AdminLayout>

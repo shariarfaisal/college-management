@@ -5,7 +5,7 @@ import Body from '../../components/adminProfile/semesters/Body'
 const Semesters = () => {
   return (
     <AdminLayout>
-      <div className="col-md-8 mx-auto mt-4">
+      <div className="col-xl-8 mx-auto mt-4">
         <Body />
       </div>
     </AdminLayout>

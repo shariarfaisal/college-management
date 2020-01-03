@@ -9,7 +9,7 @@ const Students = (props) => {
   return (
     <InfoContextProvider>
       <AdminLayout>
-        <div className="col-md-12">
+        <div className="col-xl-10 mx-auto">
           <StudentContextProvider>
             <Body />
           </StudentContextProvider>

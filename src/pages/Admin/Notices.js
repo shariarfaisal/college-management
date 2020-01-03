@@ -5,7 +5,7 @@ import Body from '../../components/adminProfile/notices/Body'
 const Notices = () => {
   return (
     <AdminLayout>
-      <div className="col-md-10">
+      <div className="col-xl-10 mx-auto">
         <Body />
       </div>
     </AdminLayout>

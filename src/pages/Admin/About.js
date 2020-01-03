@@ -1,15 +1,15 @@
 import React from 'react'
 import AdminLayout from '../../layouts/AdminLayout'
-import Body from '../../components/adminProfile/notice/Notice'
+import Body from '../../components/adminProfile/about/Body'
 
-const Notice = ({ match }) => {
+const About = (props) => {
   return (
     <AdminLayout>
       <div className="col-xl-10 mx-auto">
-        <Body id={match.params.id} />
+        <Body />
       </div>
     </AdminLayout>
   )
 }
 
-export default Notice
+export default About

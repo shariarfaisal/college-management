@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import LeftSection from './LeftSection'
+import LeftSection from './left/LeftSection'
 
 
 const Body = ({children}) => {

@@ -5,7 +5,7 @@ import Body from '../../components/teachers/Teacher'
 const Teacher = ({ match }) => {
   return (
     <AdminLayout>
-      <div className="col-10 mx-auto mt-4">
+      <div className="col-xl-10 mx-auto mt-4">
         <Body id={match.params.id} />
       </div>
     </AdminLayout>

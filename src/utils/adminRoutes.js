@@ -1,4 +1,4 @@
-import Settings from '../pages/Admin/Settings'
+import About from '../pages/Admin/About'
 import Students from '../pages/Admin/Students'
 import Student from '../pages/Admin/Student'
 import BookList from '../pages/Admin/BookList'
@@ -18,7 +18,7 @@ import Admin404 from '../pages/Admin404'
 
 export default () => [
   {path: "/",component: Home},
-  {path: "/settings",component: Settings},
+  {path: "/about",component: About},
   {path: "/students",component: Students},
   {path: "/student/:id",component: Student},
   {path: "/booklists",component: BookList},
