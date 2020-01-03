@@ -9,7 +9,6 @@ import query from './query'
 import { createClass } from './mutations'
 
 const AddClass = ({routine,mutate}) => {
-  console.log('AddClass');
   const [day,setDay] = useState('')
   const [period,setPeriod] = useState('')
   const [mentor,setMentor] = useState('')

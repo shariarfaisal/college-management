@@ -5,9 +5,9 @@ import styled from 'styled-components'
 import query from './query'
 import DayAction from './DayAction'
 import { deleteClass } from './mutations'
+import { admin } from '../../users'
 
 const days = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']
-const user = localStorage.getItem('admin')
 const des = a => a === 45 ? 2 : 3
 
 
@@ -21,7 +21,7 @@ const Day = ({id,day,period,subject,mentor}) => {
 
   const onDeleteHandler = (e) => {
     const confirm = window.confirm('Are you sure you want to delete this class?')
-    if(confirm && user){
+    if(confirm && admin){
       getDelete()
     }
   }
@@ -31,7 +31,7 @@ const Day = ({id,day,period,subject,mentor}) => {
       <p className="m-0">{`${period.startedAt}-${period.endAt}`}</p>
       <p className="m-0"><strong>Sub: </strong>{`${subject.name} (${subject.code})`}</p>
       <p className="m-0"><strong>Mentor: </strong>{mentor.name}</p>
-      {user && <DayAction onDeleteHandler={onDeleteHandler}/>}
+      {admin && <DayAction onDeleteHandler={onDeleteHandler}/>}
     </div>
   )
 }
