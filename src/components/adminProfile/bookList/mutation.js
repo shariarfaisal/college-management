@@ -24,3 +24,23 @@ export const createBookList = gql`
   }
 
 `
+
+export const updateBook = gql`
+  mutation UpdateBook($id: ID!,$name: String,$code: String,$bookList: ID!){
+    updateBook(id: $id,data:{
+      name: $name,
+      code: $code,
+      bookList: $bookList
+    }){
+      id name code
+    }
+  }
+`
+
+export const deleteBook = gql`
+  mutation DeleteBook($id: ID!){
+    deleteBook(id: $id){
+      id
+    }
+  }
+`

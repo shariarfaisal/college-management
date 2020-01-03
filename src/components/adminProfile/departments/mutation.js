@@ -11,4 +11,14 @@ const mutation = gql`
   }
 `
 
+export const updateDepartment = gql`
+  mutation UpdateDepartment($id: ID!,$name: String){
+    updateDepartment(id: $id,data:{
+      name: $name
+    }){
+      id name
+    }
+  }
+`
+
 export default mutation

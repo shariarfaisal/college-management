@@ -5,7 +5,7 @@ import { useQuery /*useLazyQuery*/ } from '@apollo/react-hooks'
 export const StudentContext = createContext()
 
 
-const GET_DATA = gql`
+export const GET_DATA = gql`
   query Students($first: Int,$skip: Int,$orderBy: String){
     students(first: $first,skip: $skip,orderBy: $orderBy){
       id

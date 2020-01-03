@@ -1,6 +1,8 @@
 import React from 'react'
+import DeleteAccount from './DeleteAccount'
 
-const Info = ({ name, roll, email, phone, department, semester,reg, shift, address, session }) => {
+
+const Info = ({ id, name, roll, email, phone, department, semester,reg, shift, address, session }) => {
   return (
     <div className="jumbotron col-12">
       <h1 className="my-4">About</h1>
@@ -14,6 +16,7 @@ const Info = ({ name, roll, email, phone, department, semester,reg, shift, addre
       <p><strong>Semester: </strong>{semester.name}</p>
       <p><strong>Shift: </strong>{shift}</p>
       <p><strong>Session: </strong>{session.year}</p>
+      <DeleteAccount id={id} name={name} roll={roll}/>
     </div>
   )
 }

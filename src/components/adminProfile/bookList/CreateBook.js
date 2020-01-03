@@ -1,9 +1,9 @@
 import React,{ useState, memo } from 'react'
 import {createBook} from './mutation'
-import { graphql } from 'react-apollo'
-import query from './Query'
 import Alert from '../../Alert'
+import { graphql } from 'react-apollo'
 import useInput from '../../hooks/useInput'
+import { bookList as query } from './Query'
 
 const CreateBook = ({ bookList, mutate }) => {
   const [name,bindName,resetName] = useInput()
@@ -17,10 +17,10 @@ const CreateBook = ({ bookList, mutate }) => {
       if(bookList && name && code){
         const { data } = await mutate({
           variables: { name, code, bookList },
-          refetchQueries: [{ query }]
+          refetchQueries: [{ query,variables:{ id: bookList } }]
         })
         if(data.createBook){
-          setSuccess('Added a new book in this book-list successfully!')
+          setError('')
           resetName();resetCode()
         }
       }
@@ -33,9 +33,7 @@ const CreateBook = ({ bookList, mutate }) => {
   return (
     <form onSubmit={submitHandler}>
       <div className="row justify-content-around mb-5">
-        <div className="col-12">
-          <Alert success={success} error={error} />
-        </div>
+        {error && <div className="col-12 text-danger"><p>{error.replace('GraphQL error:','')}</p></div>}
         <input {...bindName} className="col-md-6 form-control my-2" placeholder="Name"/>
         <input {...bindCode} className="col-md-3 form-control my-2" placeholder="Code"/>
         <button type="submit" className="btn col-sm-6 col-md-2 btn-info my-2">add</button>
