@@ -1,30 +1,38 @@
-import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
+import React,{ useState, memo } from 'react'
+import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import NoticeModal from './NoticeModal'
 import Search from './Search'
+import query from './query'
+import tcv from './timeConverter'
 
-
-export const query = gql` query Notices($first: Int,$skip: Int,$orderBy: String,$query: String){ notices(first: $first,skip: $skip,orderBy: $orderBy,query: $query){ id title text createdAt }}`
+const [first,orderBy] = [15,'createdAt_DESC']
 
 const Notices = (props) => {
-  const first = 15
   const [skip,setSkip] = useState(0)
-  const orderBy = "createdAt_DESC"
   const [search,setSearch] = useState('')
 
   const { data } = useQuery(query,{
     variables: { first, skip, orderBy, query: search }
   })
-  console.log(data);
+
   return (
     <div>
       <Search setSearch={setSearch}/>
       <ul className="list-group">
         {
-          data && data.notices.map((n,i) => <NoticeModal key={i} {...n} />)
+          data && data.notices.map((n,i) => (
+            <li key={i} className="list-group-item my-2 d-flex justify-content-between align-items-center">
+              <Link to={`/notices/${n.id}`}>{n.title}</Link>
+              <small>{tcv(n.createdAt)}</small>
+            </li>
+          ))
         }
-        {data && data.notices.length > 14 && <li onClick={e => setSkip(skip+first)} className="text-muted my-2 list-group-item list-group-item-action list-group-item-info text-center" style={{cursor: 'pointer'}}>
+        {data && data.notices.length > first &&
+          <li
+            onClick={e => setSkip(skip+first)}
+            className="text-muted my-2 list-group-item list-group-item-action list-group-item-info text-center"
+            style={{cursor: 'pointer'}}>
           more
         </li>}
       </ul>
@@ -32,4 +40,4 @@ const Notices = (props) => {
   )
 }
 
-export default Notices
+export default memo(Notices)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
@@ -26,12 +27,24 @@ const query = gql`
 
 
 const Attendence = ({ classId }) => {
+=======
+import React,{ Fragment } from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import Students from './Students'
+import ClassSection from '../classes/ClassSection'
+import query from './query'
+import Heading from './Heading'
+
+
+const Index = ({ classId }) => {
+>>>>>>> pro
   const {data} = useQuery(query,{
     variables: { id: classId }
   })
   const att = data ? data.attendenceClass.class : null
   return (
     <div className="row">
+<<<<<<< HEAD
       {
         data && <ClassSection cls={att}/>
       }
@@ -49,8 +62,26 @@ const Attendence = ({ classId }) => {
                   classId={classId}
                 />
       }
+=======
+      {data && <Fragment>
+        <ClassSection cls={att}/>
+        <Heading date={data.attendenceClass.day.date}/>
+        <Students
+          department={att.department.id}
+          semester={att.semester.id}
+          shift={att.day.routine.shift}
+          session={att.day.routine.session.id}
+          attendences={data.attendenceClass.attendences}
+          classId={classId}
+        />
+      </Fragment>}
+>>>>>>> pro
     </div>
   )
 }
 
+<<<<<<< HEAD
 export default Attendence
+=======
+export default Index
+>>>>>>> pro

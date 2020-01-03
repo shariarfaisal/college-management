@@ -1,7 +1,8 @@
 import React,{ useState } from 'react'
 import { Link } from 'react-router-dom'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
+import { createAttendence } from './mutations'
+
 
 const Student = ({roll,name,id,present:pre,mutate,classId}) => {
   const [present,setPresent] = useState(pre)
@@ -36,14 +37,4 @@ const Student = ({roll,name,id,present:pre,mutate,classId}) => {
   )
 }
 
-const mutation = gql`
-  mutation CreateAttendence($class: ID!,$student: ID!,$present: Boolean!){
-    createAttendence(data:{
-      class: $class,student: $student,present: $present
-    }){
-      id present
-    }
-  }
-`
-
-export default graphql(mutation)(Student)
+export default graphql(createAttendence)(Student)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ memo } from 'react'
 // import PropTypes from 'prop-types'
 
 const Select = ({value,setValue,plh,options}) => (
@@ -10,4 +10,4 @@ const Select = ({value,setValue,plh,options}) => (
   </div>
 )
 
-export default Select
+export default memo(Select)

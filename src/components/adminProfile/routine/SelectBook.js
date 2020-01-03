@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ memo } from 'react'
 
 const filter = (list) => {
   return list.reduce((a,b) => {
@@ -18,4 +18,4 @@ const SelectBook = ({subject,setSubject,bookLists}) => {
   )
 }
 
-export default SelectBook
+export default memo(SelectBook)

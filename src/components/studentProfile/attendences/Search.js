@@ -1,7 +1,8 @@
-import React,{ useState } from 'react'
+import React from 'react'
+import useInput from '../../hooks/useInput'
 
 const Search = ({setQuery}) => {
-  const [search,setSearch] = useState('')
+  const [search,bindSearch] = useInput('')
 
   const onSubmitHandler = e => {
     e.preventDefault()
@@ -12,7 +13,7 @@ const Search = ({setQuery}) => {
     <tr>
       <th colSpan="4">
         <form onSubmit={onSubmitHandler} className="d-flex">
-          <input className="form-control" type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="01-01-2019" />
+          <input className="form-control" {...bindSearch} placeholder="01-01-2019" />
           <button type="submit" className="btn btn-sm btn-info mx-2">submit</button>
         </form>
       </th>

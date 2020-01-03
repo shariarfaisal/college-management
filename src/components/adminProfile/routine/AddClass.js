@@ -1,14 +1,15 @@
-import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
+import React,{ useState, memo } from 'react'
 import { graphql } from 'react-apollo'
 import SelectDay from './SelectDay'
 import SelectPeriod from './SelectPeriod'
 import SelectTeacher from './SelectTeacher'
 import SelectBook from './SelectBook'
-import CloseAlert from '../../CloseAlert'
+import Alert from '../../Alert'
 import query from './query'
+import { createClass } from './mutations'
 
 const AddClass = ({routine,mutate}) => {
+  console.log('AddClass');
   const [day,setDay] = useState('')
   const [period,setPeriod] = useState('')
   const [mentor,setMentor] = useState('')
@@ -35,12 +36,13 @@ const AddClass = ({routine,mutate}) => {
       }
     }
   }
+
+
   return (
     <div title="Create Class" className="py-3 px-2 my-3" style={{background: "rgba(184, 192, 199, 0.32)"}}>
       <p className="text-center">Create class</p>
       <form onSubmit={submitHandler}>
-        {success && <CloseAlert type="success">{success}</CloseAlert>}
-        {error && <CloseAlert type="danger">{error}</CloseAlert>}
+        <Alert success={success} error={error} />
         <div className="d-flex justify-content-center">
           <SelectDay day={day} setDay={setDay} days={routine.days}/>
           <SelectPeriod period={period} setPeriod={setPeriod} />
@@ -55,19 +57,5 @@ const AddClass = ({routine,mutate}) => {
   )
 }
 
-const mutation = gql`
-  mutation CreateClass($day: ID!,$period: ID!,$mentor: ID!,$subject: ID!,$semester: ID!,$department: ID!){
-    createClass(data:{
-      day: $day,
-      period: $period,
-      mentor: $mentor,
-      subject: $subject,
-      semester: $semester,
-      department: $department
-    }){
-      id
-    }
-  }
-`
 
-export default graphql(mutation)(AddClass)
+export default graphql(createClass)(memo(AddClass))

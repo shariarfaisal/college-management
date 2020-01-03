@@ -5,7 +5,9 @@ import Body from '../../components/student/Body'
 const Student = ({match}) => {
   return (
     <AdminLayout>
-      <Body id={match.params.id}/>
+      <div className="col-10 mx-auto">
+        <Body id={match.params.id}/>
+      </div>
     </AdminLayout>
   )
 }

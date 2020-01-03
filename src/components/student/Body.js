@@ -15,11 +15,12 @@ const query = gql`
 
 
 const Body = ({ id }) => {
-  const { data } = useQuery(query,{ variables: { id } })
+  const { data, error } = useQuery(query,{ variables: { id } })
   return (
     <div className="row">
       {data && <Info {...data.student}/>}
       {data && data.student.bookLists.length !== 0 && <Report {...data.student}/>}
+      {error && <div className="jumbotron text-center col-10 mx-auto mt-5"><h1>Not found</h1></div>}
     </div>
   )
 }

@@ -1,21 +1,17 @@
-import React,{ useState, useContext, useEffect} from 'react'
-import { StudentMeContext } from '../../../store/StudentMeContext'
+import React from 'react'
 import Routine from './Routine'
+import useMe from '../useMe'
 
 const Body = (props) => {
-  const me = useContext(StudentMeContext)
-  const [mah,setMah] = useState(null)
-  useEffect(() => {
-    if(me) setMah(me)
-  },[me])
+  const data = useMe()
 
   return (
     <div>
-      {me && <Routine
-                department={me.department.name}
-                semester={me.semester.name}
-                session={me.session.year}
-                shift={me.shift}
+      {data && <Routine
+                department={data.department.name}
+                semester={data.semester.name}
+                session={data.session.year}
+                shift={data.shift}
               />}
     </div>
   )

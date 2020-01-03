@@ -1,16 +1,7 @@
 import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
-import Search from './Search'
-
-
-const attendenceQuery = gql`
-  query Attendences($student: ID,$semester: ID,$orderBy: String,$skip: Int,$first: Int,$query: String){
-    attendences(student: $student,semester: $semester,orderBy: $orderBy,skip: $skip,first: $first,query: $query){
-      id class{ id day{ id date } class{ id period{ id startedAt endAt} subject{ id name code }}} present
-    }
-  }
-`
+import { attendenceQuery } from './query'
+import Thead from './Thead'
 
 const Attendences = ({id,semester}) => {
   const [skip,setSkip] = useState(0)
@@ -24,15 +15,7 @@ const Attendences = ({id,semester}) => {
   return (
     <div>
       <table className="table">
-        <thead className="thead-light">
-          <Search setQuery={setQuery}/>
-          <tr>
-            <th>Subject</th>
-            <th>Date</th>
-            <th>Period</th>
-            <th>Attendence</th>
-          </tr>
-        </thead>
+        <Thead setQuery={setQuery}/>
         <tbody>
           {data && data.attendences.map((a,i) => (
             <tr key={i}>

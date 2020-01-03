@@ -1,12 +1,8 @@
-import React,{ useState,useEffect,useContext} from 'react'
-import { StudentMeContext } from '../../store/StudentMeContext'
+import React from 'react'
+import useMe from './useMe'
 
 const BookList = () => {
-  const me = useContext(StudentMeContext)
-  const [data,setData] = useState(null)
-  useEffect(() => {
-    if(me) setData(me)
-  },[me])
+  const data = useMe()
 
   return (
     data && <div className="jumbotron">

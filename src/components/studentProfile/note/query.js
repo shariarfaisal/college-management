@@ -1,9 +1,8 @@
 import { gql } from 'apollo-boost'
-
 const query = gql`
-  query{
-    notes{
-      id title text
+  query Note($id: ID!){
+    note(id: $id){
+      id title text createdAt
     }
   }
 `

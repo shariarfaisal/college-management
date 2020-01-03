@@ -1,26 +1,14 @@
 import React,{ useState } from 'react'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import CloseAlert from '../../CloseAlert'
+import Alert from '../../Alert'
 import { semesterQuery } from '../queries'
-
-const mutation = gql`
-  mutation CreateSemester($name: String!){
-    createSemester(data:{
-      name: $name
-    }){
-      id
-      name
-    }
-  }
-`
+import useInput from '../../hooks/useInput'
+import mutation from './mutation'
 
 const AddSemester = (props) => {
-  const [name,setName] = useState('')
+  const [name,bindName,resetName] = useInput('')
   const [success,setSuccess] = useState('')
   const [error,setError] = useState('')
-
-  // const [addToDo,{ data, error: err }] = useMutation(mutation)
 
   const submitHandler = async e => {
     e.preventDefault()
@@ -30,7 +18,7 @@ const AddSemester = (props) => {
         refetchQueries: [{ query: semesterQuery }]
       })
       if(data.createSemester){
-        setName('')
+        resetName()
         setSuccess(`New semester ${data.createSemester.name} created successfully!`)
         setError('')
       }
@@ -42,14 +30,11 @@ const AddSemester = (props) => {
 
   return (
     <div className="col-12">
-    {success && <CloseAlert type="success">{success}</CloseAlert>}
-    {error && <CloseAlert type="danger">{error}</CloseAlert>}
+    <Alert success={success} error={error}/>
       <form className="d-flex justify-content-around" onSubmit={submitHandler}>
         <input
+          {...bindName}
           className="form-control m-2"
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
           placeholder="Add Semester..."
         />
         <button className="btn btn-info px-3 m-2">Add</button>

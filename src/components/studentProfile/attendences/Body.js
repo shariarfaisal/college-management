@@ -1,17 +1,13 @@
-import React,{ useState,useEffect,useContext} from 'react'
-import { StudentMeContext } from '../../../store/StudentMeContext'
+import React from 'react'
 import Attendences from './Attendences'
+import useMe from '../useMe'
 
 const Body = (props) => {
-  const me = useContext(StudentMeContext)
-  const [data,setData] = useState(null)
-
-  useEffect(() => {
-    if(me) setData(me)
-  },[me])
+  const data = useMe()
 
   return (
     <div>
+      <h3 className="text-center my-4">Activity</h3>
       {data && <Attendences {...data}/>}
     </div>
   )

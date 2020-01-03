@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import styled from 'styled-components'
+import activer from '../activer'
 
 const items = [
   {title: "Home",to:"/"},
@@ -28,8 +29,8 @@ const LeftSection = (props) => {
   return (
     <Styles className="col-md-3 col-lg-2" id="left-section">
       <ul className="nav flex-column my-2">
-        {items.map((item,i) => (
-          <li key={i} className="nav-item"><Link to={item.to} className="nav-link my-2">{item.title}</Link></li>
+        {activer(props,items).map((item,i) => (
+          <li key={i} className="nav-item"><Link to={item.to} className={`nav-link my-2 ${item.isActive? 'active':''}`}>{item.title}</Link></li>
         ))}
         <li className="nav-item"><Link to="/" className="nav-link" onClick={e => logout(props.history)}>Logout</Link></li>
       </ul>
@@ -57,8 +58,13 @@ const Styles = styled.div`
         background: lightblue;
         border-radius: 100px;
       }
+      .active{
+        color: black;
+        background: lightblue;
+        border-radius: 100px;
+      }
     }
   }
 `
 
-export default LeftSection
+export default withRouter(LeftSection)

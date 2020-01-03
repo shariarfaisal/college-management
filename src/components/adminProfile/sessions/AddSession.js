@@ -1,8 +1,8 @@
 import React,{ memo, useState } from 'react'
-import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
-import CloseAlert from '../../CloseAlert'
+import Alert from '../../Alert'
 import { sessionQuery } from '../queries'
+import { createSession } from './mutations'
 
 const AddSession = (props) => {
   const [year,setYear] = useState('')
@@ -30,8 +30,7 @@ const AddSession = (props) => {
 
   return (
     <div>
-    {success && <CloseAlert type="success">{success}</CloseAlert>}
-    {error && <CloseAlert type="danger">{error}</CloseAlert>}
+      <Alert success={success} error={error} />
       <form className="d-flex justify-content-around" onSubmit={submitHandler}>
         <input
           className="form-control m-2"
@@ -46,15 +45,4 @@ const AddSession = (props) => {
   )
 }
 
-const mutation = gql`
-  mutation CreateSession($year: String!){
-    createSession(data:{
-      year: $year
-    }){
-      id
-      year
-    }
-  }
-`
-
-export default graphql(mutation)(memo(AddSession))
+export default graphql(createSession)(memo(AddSession))

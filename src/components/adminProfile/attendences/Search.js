@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ memo } from 'react'
 import Input from './Input'
 
 const Search = ({search,setSearch}) => {
@@ -9,4 +9,4 @@ const Search = ({search,setSearch}) => {
   )
 }
 
-export default Search
+export default memo(Search)

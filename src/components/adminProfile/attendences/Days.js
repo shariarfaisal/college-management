@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react'
+import React,{ useState, useEffect, memo } from 'react'
 import MonthlyDays from './MonthlyDays'
 import months from './months'
 
@@ -7,7 +7,6 @@ const Days = ({days,year,setYear}) => {
   const onSubmitHandler = e => {
     e.preventDefault()
     if(yar && year !== yar){
-      console.log('run');
       setYear(yar)
     }
   }
@@ -34,4 +33,4 @@ const Days = ({days,year,setYear}) => {
   )
 }
 
-export default Days
+export default memo(Days)
