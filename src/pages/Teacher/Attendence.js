@@ -1,6 +1,6 @@
 import React from 'react'
 import TeacherLayout from '../../layouts/TeacherLayout'
-import Body from '../../components/teacherProfile/attendence/index'
+import Body from '../../components/teacherProfile/attendence/Index'
 
 const Attendence = ({match}) => {
   return (
