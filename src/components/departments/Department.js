@@ -12,7 +12,4 @@ const Department = ({name}) => {
   )
 }
 
-// <h2 className="card-title my-3 text-center bg-light text-dark py-3">{name}</h2>
-// <Body />
-
 export default Department

@@ -1,11 +1,12 @@
 import studentRoutes from './studentRoutes'
 import teacherRoutes from './teacherRoutes'
 import adminRoutes from './adminRoutes'
+import { STUDENT, TEACHER, ADMIN } from './naming'
 
 const checkUser = (routes) => {
-  const student = localStorage.getItem('student')
-  const teacher = localStorage.getItem('teacher')
-  const admin = localStorage.getItem('admin')
+  const student = localStorage.getItem(STUDENT)
+  const teacher = localStorage.getItem(TEACHER)
+  const admin = localStorage.getItem(ADMIN)
 
   if(student){
     return studentRoutes()

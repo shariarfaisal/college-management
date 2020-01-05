@@ -19,7 +19,6 @@ const publicRoutes = [
 
 const routes = checkUser(publicRoutes)
 
-console.log(routes);
 const App = () => {
   return (
     <BrowserRouter>

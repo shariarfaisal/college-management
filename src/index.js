@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import { ApolloClient, ApolloLink, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import App from './App';
+import { STUDENT, TEACHER, ADMIN } from './utils/naming'
+
 
 const httpLink = new HttpLink({ uri: 'http://localhost:4000' });
 
 const authLink = new ApolloLink((operation, forward) => {
-  const adminToken = localStorage.getItem('admin');
-  const studentToken = localStorage.getItem('student');
-  const teacherToken = localStorage.getItem('teacher');
+  const adminToken = localStorage.getItem(ADMIN);
+  const studentToken = localStorage.getItem(STUDENT);
+  const teacherToken = localStorage.getItem(TEACHER);
 
   const headers = {}
   if(adminToken){

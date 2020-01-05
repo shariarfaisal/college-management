@@ -3,6 +3,7 @@ import FormGroup from '../components/FormGroup'
 import AdminLoginLayout from '../layouts/AdminLoginLayout'
 import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
+import { setItem } from '../components/users'
 
 const AdminLogin = (props) => {
   const [username,setUsername] = useState('')
@@ -19,9 +20,10 @@ const AdminLogin = (props) => {
         if(data.loginAdmin){
           const token = `Bearer ${data.loginAdmin.token}`
           setError('')
-          localStorage.setItem('admin',token)
-          // props.history.push('/')
-          window.location = "/"
+          const res = setItem('admin',token)
+          if(res){
+            window.location = "/"
+          }
         }
       } catch (e) {
         setError("Unable to login!")
