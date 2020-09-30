@@ -1,0 +1,102 @@
+
+
+.wrapper{
+  background: var(--color-light);
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  position: relative;
+}
+
+.left-menu{
+  background: var(--color-light-dark);
+  width: 25%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+
+  .menu{
+    width: 100%;
+    height: auto;
+    margin-top: 10rem;
+
+    &-item{
+      padding: 1rem 0;
+      width: 100%;
+      text-align: center;
+      font-weight: 400;
+      font-size: 1.8rem;
+      font-family: var(--font-ubuntu);
+      color: var(--color-primary);
+      transition: .2s ease;
+      cursor: pointer;
+      .name{
+        margin: 0 .7rem;
+      }
+
+      &:hover{
+        opacity: .5;
+      }
+    }
+
+
+
+  }
+}
+
+
+.content{
+  width: 50%;
+  margin-left: 25%;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.right-section{
+  width: 25%;
+  background: var(--color-light-dark);
+  height: 100vh;
+  position: fixed;
+  left: 75%;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+
+.customScrollY{
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    background: var(--color-grey-light);
+    width: 4px; }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-light-dark); }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-grey-light);
+    border-radius: 10px;
+  }
+}
+
+.customScrollX{
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    background: var(--color-grey-light);
+    width: 6px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-light-dark); }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--color-grey-light);
+  }
+}
