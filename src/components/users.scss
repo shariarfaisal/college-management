@@ -15,20 +15,21 @@
         display: flex;
         flex-flow: row wrap;
         margin: 1rem;
-        background: var(--color-light);
+        background: var(--bg-primary);
         box-shadow: var(--shadow-sm);
         padding: 1rem;
 
         .profile{
-          width: 4rem;
+          width: 25%;
         }
 
         .body{
+          width: 75%;
           padding: 0 1rem;
           .name{
             display: block;
             text-decoration: none;
-            color: var(--color-primary);
+            color: var(--text-primary);
             font-size: 1.2rem;
             margin-bottom: .3rem;
 
@@ -39,13 +40,13 @@
           .work{
             display: block;
             font-size: .8rem;
-            color: var(--color-grey);
+            color: var(--text-secondary);
           }
           .posts{
             display: block;
             font-size: 1rem;
             text-decoration: none;
-            color: var(--color-grey);
+            color: var(--text-secondary);
             cursor: pointer;
 
             &:hover{

@@ -1,0 +1,40 @@
+
+
+.profile-content{
+  font-family: var(--font-ubuntu);
+  min-height: 90vh;
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+  margin: 1rem;
+  margin-bottom: 2rem;
+  padding: 2rem 1.5rem;
+
+  .item{
+    width: 100%;
+    padding: .5rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 400;
+
+    &-name{
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin-right: 2rem;
+    }
+  }
+
+  .flex{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .block{
+    .item-name,.item-value{
+      padding: .5rem 0;
+    }
+    .small{
+      font-size: 1rem;
+      color: grey;
+    }
+  }
+
+}

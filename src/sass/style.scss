@@ -1,6 +1,23 @@
 :root{
   --font-peddana: 'Peddana', serif;
   --font-ubuntu: 'Ubuntu', sans-serif;
+
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #f5f5f5;
+  --bg-info: #347084;
+  --bg-success: green;
+  --bg-warning: yellow;
+  --bg-danger: red;
+  --bg-light: #FFFFFF;
+
+  --text-light: #ffffff;
+  --text-dark: black;
+  --text-primary: #5199b0;
+  --text-secondary: grey;
+  --text-secondary-dark: #666666;
+  --text-secondary-light: #cccccc;
+  --text-muted: grey;
+
   --color-grey-light: #cccccc;
   --color-grey: grey;
   --color-grey-dark: #666666;
@@ -9,6 +26,9 @@
   --color-primary: #5199b0;
   --color-primary-dark: #347084;
   --color-primary-light: #81cbe3;
+
+
+
   --font-size-xl: 1.8rem;
   --font-size-lg: 1.4rem;
   --font-size-md: 1.2rem;
@@ -16,6 +36,13 @@
   --font-size-xs: .8rem;
   --shadow-sm: 0px 1px 7px #e1e1e1;
   --shadow-sm-dark: 0px 1px 7px #b3b3b3;
+
+  --p: 1.5rem;
+  --p-sm: 1rem;
+  --p-xs: .75rem;
+  --p-md: 2rem;
+  --p-lg: 3rem;
+  --p-xl: 4rem;
 }
 
 *{
@@ -30,4 +57,96 @@ html{
 
 body{
   font-size: 1.6rem;
+}
+
+
+.link{
+  text-decoration: none;
+  &:hover{
+    opacity: .7;
+  }
+}
+
+
+.flex{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.hover{
+  &:hover{
+    opacity: .5;
+  }
+}
+
+.hover-shadow{
+  &:hover{
+    box-sizing: var(--shadow-sm);
+  }
+}
+
+@mixin title{
+  text-decoration: none;
+  font-family: var(--font-ubuntu);
+  margin-bottom: .5rem;
+}
+
+.title-1{
+  @include title;
+  font-size: var(--font-size-xl);
+}
+.title-2{
+  @include title;
+  font-size: var(--font-size-lg);
+}
+.title-3{
+  @include title;
+  font-size: var(--font-size-md);
+}
+.title-4{
+  @include title;
+  font-size: var(--font-size-sm);
+}
+.title-5{
+  @include title;
+  font-size: var(--font-size-xs);
+}
+
+.btn-primary{
+  padding: .5rem 1.5rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .3s;
+  background: #009688;
+  color: #fff;
+
+  &:hover{
+    box-shadow: var(--shadow-sm-dark);
+  }
+}
+
+
+.notfound{
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font-ubuntu);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .item{
+    width: 25%;
+    min-height: 10rem;
+    margin-top: -10rem;
+    font-size: 2rem;
+    text-align: center;
+  }
 }

@@ -1,32 +1,37 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import PostItem from './PostItem'
 import SearchBar from './SearchBar'
+import { connect } from 'react-redux'
+import { getPosts } from '../../store/actions/posts'
 
 
-const Posts = (props) => {
+const Posts = ({ posts, getPosts }) => {
+
+  useEffect(() => {
+    getPosts()
+  },[])
+
   return(
     <div className="content-home-posts">
-      <SearchBar />
+      {posts.loading && <div>loading...</div>}
       <div className="posts">
 
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-
+        {posts.data && posts.data.map((post,i) => <PostItem key={i} {...post} />)}
 
       </div>
     </div>
   )
 }
-export default Posts
+
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPosts: () => dispatch(getPosts())
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Posts)

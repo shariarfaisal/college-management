@@ -1,4 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+const getLogout = (e) => {
+  localStorage.removeItem('x-user-token')
+  window.location = '/'
+}
 
 const LeftMenu = (props) => {
   return(
@@ -6,19 +12,23 @@ const LeftMenu = (props) => {
       <div className="menu">
         <div className="menu-item">
           <i className="bx bx-home icon"></i>
-          <span className="name">Home</span>
+          <Link to="/" className="name">Home</Link>
         </div>
         <div className="menu-item">
           <i className="bx bx-plus icon"></i>
-          <span className="name">Create New</span>
+          <Link to="/post/create" className="name">Create New</Link>
         </div>
         <div className="menu-item">
           <i className="bx bx-user icon"></i>
-          <span className="name">Profile</span>
+          <Link to="/profile" className="name">Profile</Link>
         </div>
         <div className="menu-item">
           <i className="bx bx-notepad icon"></i>
-          <span className="name">My Posts</span>
+          <Link to="/profile/posts" className="name">My Posts</Link>
+        </div>
+        <div onClick={getLogout} className="menu-item">
+          <i className="bx bx-log-out icon"></i>
+          <div className="name">Logout</div>
         </div>
 
       </div>

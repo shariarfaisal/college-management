@@ -2,19 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const PostItem = (props) => {
+const PostItem = ({ id, title, tags, createdAt, profile }) => {
   return(
     <div className="posts-item">
       <div className="user">
         <img className="profile" src="./img/profile.jpg" alt="Profile" />
-        <Link to="/" className="name">Sharia Emon Faisal</Link>
-        <small className="time">3 min ago</small>
+        <Link to={`/user/${profile.id}`} className="name">{profile.name}</Link>
+        <small className="time title-5">{createdAt}</small>
       </div>
-      <Link to='/' className="title">This is the first title of the post list...</Link>
+      <Link to={`/post/${id}`} className="title">{title}</Link>
       <div className="tags customScrollX">
-        <span className="tags-item">programming</span>
-        <span className="tags-item">javascript</span>
-        <span className="tags-item">golang</span>
+        {tags.split(',').map((tag,i) => (
+          <span key={i} className="tags-item">{tag}</span>
+        ))}
       </div>
     </div>
   )

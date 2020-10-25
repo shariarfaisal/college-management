@@ -1,47 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import UsersItem from './UsersItem'
 import './users.scss'
-
-const UsersItem = () => {
-  return (
-    <div className="users-item">
-      <Link to="/"><img className="profile" src="./img/profile.jpg" alt="Name" /></Link>
-      <div className="body">
-        <Link className="name" to="/">Sharia Emon Faisal</Link>
-        <small className="work">Software Engineer</small>
-        <Link className="posts" to="/posts">Posts</Link>
-      </div>
-    </div>
-  )
-}
+import { getUsers } from '../store/actions/user'
+import { connect } from 'react-redux'
 
 
-const Users = (props) => {
+const Users = ({ users, loading }) => {
   return(
     <div className="users-wrapper">
       <div className="users customScrollY">
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
-        <UsersItem />
+        {users && users.map((user,i) => <UsersItem key={i} {...user} />)}
       </div>
     </div>
   )
 }
-export default Users
+
+const mapStateToProps = state => {
+  return {
+    ...state.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getUsers: dispatch(getUsers())
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Users)
