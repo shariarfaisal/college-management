@@ -5,6 +5,7 @@ import {
   PAGINATION_REQUEST,
   PAGINATION_SUCCESS,
   PAGINATION_ERROR,
+  SET_PAGINATION_LIMIT,
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_ERROR
@@ -38,6 +39,8 @@ export const getPosts = ({ limit, page }) => {
   }
 }
 
+
+// We will accept prev or next as arg in this function ....
 export const getPaginate = ({ limit, page }) => {
   return dispatch => {
     dispatch({ type: PAGINATION_REQUEST })
@@ -74,7 +77,7 @@ export const getSearch = ({ search, limit, page }) => {
             query: search,
             data: res.data,
             limit,
-            page 
+            page
           }
         })
       })
@@ -86,5 +89,14 @@ export const getSearch = ({ search, limit, page }) => {
           })
         }
       })
+  }
+}
+
+export const setPaginationLimit = (limit) => {
+  return dispatch => {
+    dispatch({
+      type: SET_PAGINATION_LIMIT,
+      payload: limit
+    })
   }
 }

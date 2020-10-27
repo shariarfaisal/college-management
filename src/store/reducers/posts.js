@@ -5,6 +5,7 @@ import {
   PAGINATION_REQUEST,
   PAGINATION_SUCCESS,
   PAGINATION_ERROR,
+  SET_PAGINATION_LIMIT,
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   SEARCH_ERROR,
@@ -24,8 +25,10 @@ const initialState = {
   },
   pagination:{
     loading: false,
-    limit: 0,
-    page: 0
+    limit: 10,
+    limits: [10,20,30,40,50,75,100],
+    page: 1,
+    nextBtn: true
   }
 }
 
@@ -36,18 +39,20 @@ const reducer = (state=initialState,action) => {
         ...state,
         loading: true
       }
-    case POSTS_SUCCESS:
+    case POSTS_SUCCESS:{
+      const { data, limit, page } = action.payload
       return {
         ...state,
         loading: false,
-        data: action.payload.data,
+        data,
         pagination:{
           ...state.pagination,
-          limit: action.payload.limit,
-          page: action.payload.page
+          limit,
+          page
         },
         error: null
       }
+    }
     case POSTS_ERROR:
       return {
         ...state,
@@ -62,17 +67,20 @@ const reducer = (state=initialState,action) => {
           loading: true
         }
       }
-    case PAGINATION_SUCCESS:
+    case PAGINATION_SUCCESS: {
+      const { data, limit, page } = action.payload
       return {
         ...state,
-        data: action.payload.data.length !== 0 ? action.payload.data: state.data,
+        data: data.length !== 0 ? data: state.data,
         pagination:{
           ...state.pagination,
           loading: false,
-          limit: action.payload.data.length !== 0 ? action.payload.limit: state.pagination.limit,
-          page: action.payload.data.length !== 0 ? action.payload.page: state.pagination.page
+          limit: data.length !== 0 ? limit: state.pagination.limit,
+          page: data.length !== 0 ? page: state.pagination.page,
+          nextBtn: data.length === limit
         }
       }
+    }
     case PAGINATION_ERROR:
       return {
         ...state,
@@ -117,6 +125,14 @@ const reducer = (state=initialState,action) => {
           ...state.search,
           loading: false,
           data: null
+        }
+      }
+    case SET_PAGINATION_LIMIT:
+      return {
+        ...state,
+        pagination:{
+          ...state.pagination,
+          limit: action.payload
         }
       }
     default:

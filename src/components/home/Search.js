@@ -63,11 +63,11 @@ function Search({ search, setSearch, getSearch, getClearResult, loading, data, q
       <input onClick={searchOnClick} type="text" value={search} onChange={e => setSearch(e.target.value)} className="form-control" placeholder="Search" />
       <button disabled={loading} type="submit" className="search-icon "><i className='bx bx-search-alt-2'></i></button>
 
-      {rsltBoxOpen && data && data.length > 0 &&
+      {rsltBoxOpen && data &&
         <div className="search-result-box shadow">
 
           {loading && <div className="text-center" style={{fontSize: '1rem'}}>loading...</div>}
-
+          {data.length === 0 && <div className="item text-center">No data found!</div>}
           {data.slice(0,10).map((item,i) => (
             <Link key={i} className="item" to={`/post/${item.id}`}>
               <span className="name d-block">{item.profile.name}</span>

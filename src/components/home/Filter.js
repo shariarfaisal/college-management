@@ -21,4 +21,6 @@ function Filter({ setLimit, limit, limits, search, setSearch }) {
     </div>
   )
 }
+
+
 export default Filter
