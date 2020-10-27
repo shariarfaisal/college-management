@@ -8,7 +8,7 @@ const getLogout = (e) => {
 
 const LeftMenu = (props) => {
   return(
-    <div className="left-menu">
+    <div className="left-menu col-md-4 col-xl-3">
       <div className="menu">
         <div className="menu-item">
           <i className="bx bx-home icon"></i>
@@ -17,6 +17,10 @@ const LeftMenu = (props) => {
         <div className="menu-item">
           <i className="bx bx-plus icon"></i>
           <Link to="/post/create" className="name">Create New</Link>
+        </div>
+        <div className="menu-item">
+          <i className="bx bx-user-group icon"></i>
+          <Link to="/users" className="name">Users</Link>
         </div>
         <div className="menu-item">
           <i className="bx bx-user icon"></i>

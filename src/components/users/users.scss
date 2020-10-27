@@ -1,0 +1,28 @@
+.rounded-20{
+  border-radius: 20px;
+}
+
+.users-wrapper{
+
+  .users-item{
+    .item-content{
+      // box-shadow: 0 1px 4px #747474;
+      height: 15rem;
+      .image{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+        img{
+          width: 6rem;
+          height: 6rem;
+          border-radius: 50%;
+        }
+      }
+      // background: linear-gradient(to top, #05cae3, #aaf5ff);
+      .name{
+        font-size: 1rem;
+      }
+    }
+  }
+}

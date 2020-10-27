@@ -1,34 +1,10 @@
 import React,{ useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import CommentItem from './CommentItem'
-import CreateComment from './CreateComment'
-import Layout from '../Layout'
+import Layout from '../layout'
 import './post.scss'
 import { connect } from 'react-redux'
 import { getPost } from '../../store/actions/post'
-
-const Header = ({ imageUrl, name, work }) => {
-  return (
-    <div className="header">
-      <img className="profile-img" src="./img/profile.jpg" alt="" />
-      <div className="identity">
-        <Link to='/' className="name">{name}</Link>
-        <small className="work">{work}</small>
-      </div>
-    </div>
-  )
-}
-
-const PostBody = ({ title, body, comments }) => (
-  <div className="post-body">
-    <h3 className="title">{title}</h3>
-    <p className="body">{body}</p>
-    <CreateComment />
-    <div className="comments">
-      {comments.map((comment,i) => <CommentItem key={i} {...comment} />)}
-    </div>
-  </div>
-)
+import Header from './Header'
+import PostBody from './PostBody'
 
 
 const Post = ({ getPostById, match, post}) => {
@@ -39,12 +15,14 @@ const Post = ({ getPostById, match, post}) => {
 
   return(
     <Layout>
-      <div className="content-home-posts">
-        <div className="post">
-          {post.loading && <small>loading...</small>}
-          {post.data && <Header {...post.data.profile} />}
-          {post.data && <PostBody {...post.data} />}
-          {post.error && <p style={{textAlign: 'center',marginTop: '40px'}}>Not Found</p>}
+      <div className="row mx-0 justify-content-center post-page">
+        <div className="col-sm-10 col-md-8">
+          <div className="post">
+            {post.loading && <small>loading...</small>}
+            {post.data && <Header {...post.data.profile} />}
+            {post.data && <PostBody {...post.data} />}
+            {post.error && <p style={{textAlign: 'center',marginTop: '40px'}}>Not Found</p>}
+          </div>
         </div>
       </div>
     </Layout>

@@ -1,42 +1,51 @@
 import {
-  FETCH_USERS_REQUEST,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_ERROR
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR,
+  USER_POSTS_SUCCESS,
+  USER_POSTS_ERROR
 } from '../types/user'
 import axios from 'axios'
 
-
-export const fetchUsersRequest = () => {
-  return{
-    type: FETCH_USERS_REQUEST
-  }
-}
-
-export const fetchUsersSuccess = data => {
-  return {
-    type: FETCH_USERS_SUCCESS,
-    payload: data
-  }
-}
-
-export const fetchUsersError = error => {
-  return {
-    type: FETCH_USERS_ERROR,
-    payload: error
-  }
-}
-
-
-export const getUsers = () => {
-  return (dispatch) => {
-    dispatch(fetchUsersRequest())
-    axios.get('/user')
+export const getUser = (profileId) => {
+  return dispatch => {
+    dispatch({
+      type: GET_USER_REQUEST
+    })
+    axios.get(`/user/${profileId}/profile`)
       .then(res => {
-        dispatch(fetchUsersSuccess(res.data))
+        dispatch({
+          type: GET_USER_SUCCESS,
+          payload: res.data
+        })
       })
       .catch(err => {
-        if(err.response && err.response.data){
-          dispatch(fetchUsersError(err.response.data))
+        if(err.response && err.response.status === 404){
+          dispatch({
+            type: GET_USER_ERROR,
+            payload: err.response.data
+          })
+        }
+      })
+  }
+}
+
+
+export const getPosts = (id) => {
+  return dispatch => {
+    axios.get(`/post/${id}/user`)
+      .then(res => {
+        dispatch({
+          type: USER_POSTS_SUCCESS,
+          payload: res.data
+        })
+      })
+      .catch(err => {
+        if(err.response){
+          dispatch({
+            type: USER_POSTS_ERROR,
+            payload: err.response.data
+          })
         }
       })
   }

@@ -1,20 +1,8 @@
 
 .signup-component{
-  width: 100%;
   min-height: 100vh;
-  position: relative;
-  font-family: var(--font-ubuntu);
 
   .content-wrapper{
-    width: 25%;
-    min-height: 30rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    box-shadow: 0px 1px 4px darkgrey;
-    padding: 1rem;
-
     .logo{
       width: 100%;
       display: flex;

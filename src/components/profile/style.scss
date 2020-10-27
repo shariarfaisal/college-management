@@ -1,23 +1,19 @@
 
 
 .profile-content{
-  font-family: var(--font-ubuntu);
-  min-height: 90vh;
-  box-shadow: var(--shadow-sm);
-  background: var(--bg-primary);
-  margin: 1rem;
-  margin-bottom: 2rem;
+  min-height: 70vh;
+  margin: 2rem 0;
   padding: 2rem 1.5rem;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
 
   .item{
     width: 100%;
-    padding: .5rem 1rem;
-    font-size: 1.3rem;
+    padding: .3rem 1rem;
+    font-size: 1rem;
     font-weight: 400;
-
     &-name{
       font-weight: 500;
-      font-size: 1.1rem;
       margin-right: 2rem;
     }
   }

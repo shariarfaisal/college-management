@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '../Layout'
+import Layout from '../layout'
 import './create-post.scss'
 import { Formik, Form} from 'formik'
 import * as Yup from 'yup'
@@ -39,21 +39,28 @@ const CreatePost = ({ post, createPost }) => {
       >
         {formik => {
           return (
-            <div className="create-post">
-              <div className="create-post-content">
-                <h1 className="title">Create Post</h1>
-                  <Form className="form">
-                    {post.success && <small style={{fontSize: '1rem',textAlign: 'center',display: 'block',padding: '1rem',color: 'green'}}>{post.success}</small>}
-                    <FormControl control="input" name="title" label="Title" type="text" />
-                    <FormControl control="textarea" name="body" label="Body" />
-                    <FormControl control="input" name="tags" label="Tags" type="text" />
-                    <div className="form-item footer">
-                      <button disabled={!formik.isValid || !formik.dirty} type="submit" className="submit">
-                        <span>Submit</span>
-                        {post.loading && <i className="bx bx-loader bx-spin"></i>}
-                      </button>
-                    </div>
-                  </Form>
+            <div className="row mx-0 justify-content-center">
+              <div className=" col-sm-10 col-md-8">
+                <div className="create-post">
+                  <div className="create-post-content">
+                    <h1 className="h3 text-info">Create Post</h1>
+                      <Form className="form">
+                        {post.success && <small style={{fontSize: '1rem',textAlign: 'center',display: 'block',padding: '1rem',color: 'green'}}>{post.success}</small>}
+
+                        <FormControl control="input" name="title" label="Title" type="text" />
+                        <FormControl control="textarea" name="body" label="Body" />
+                        <FormControl control="input" name="tags" label="Tags" type="text" />
+
+                        <div className="form-group d-flex">
+                          <button disabled={!formik.isValid || !formik.dirty} type="submit" className="btn btn-info px-4 ml-auto">
+                            <span>Submit</span>
+                            {post.loading && <i className="bx bx-loader bx-spin"></i>}
+                          </button>
+                        </div>
+
+                      </Form>
+                  </div>
+                </div>
               </div>
             </div>
           )

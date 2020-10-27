@@ -24,8 +24,8 @@ function Login({ getLogin, login }) {
   }
 
   return(
-    <div className="login-component">
-      <div className="content-wrapper">
+    <div className="login-component row mx-0 justify-content-center align-items-center">
+      <div className="content-wrapper shadow p-2 bg-light col-10 col-xs-8 col-sm-6 col-md-4 col-lg-3">
         <div className="logo">
           <i className="bx bx-user"></i>
         </div>

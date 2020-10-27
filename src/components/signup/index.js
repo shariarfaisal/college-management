@@ -32,21 +32,20 @@ function Signup({ getSignup, getCheckUsername, signup }) {
   }
 
   return(
-    <div className="signup-component">
-      <div className="content-wrapper">
+    <div className="signup-component row mx-0 justify-content-center align-items-center">
+      <div className="content-wrapper col-11 col-xs-8 col-sm-6 col-lg-3 shadow bg-light p-2">
         <div className="logo">
           <i className="bx bx-user-plus"></i>
         </div>
         <h3 className="title">Signup</h3>
         <div>
-          {signup.success && <small style={{color: 'green',fontSize: '.9rem',textAlign: 'center',display: 'block'}}>{signup.success}</small>}
+          {signup.success && <div style={{fontSize: '.9rem'}} className="text-center text-success">{signup.success}</div>}
         </div>
         <Formik
           onSubmit={onSubmit}
           initialValues={initialValues}
           validationSchema={validationSchema}>
           {formik => {
-            console.log(formik);
             return (
               <Form className="form">
                 <FormControl type="text" name="name" control="input" label="Name"  />
@@ -55,7 +54,6 @@ function Signup({ getSignup, getCheckUsername, signup }) {
                 <FormControl type="password" name="password" control="input" label="Password"  />
                 <div className="submit">
                   <button disabled={!formik.isValid || !formik.dirty} className="submit-btn" type="submit">
-                    <i className="bx bx-log-in"></i>
                     <span>Signup</span>
                     {signup.loading && <i className="bx bx-loader bx-spin"></i>}
                   </button>

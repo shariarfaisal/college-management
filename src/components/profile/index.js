@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '../Layout'
+import Layout from '../layout'
 import './style.scss'
 import { connect } from 'react-redux'
 import { getUserProfile } from '../../store/actions/profile'
@@ -8,8 +8,10 @@ import ProfileInfo from './ProfileInfo'
 function Profile({ profile }) {
   return(
     <Layout>
-      <div className="profile-content">
-        {profile.data && <ProfileInfo {...profile.data} />}
+      <div className="row mx-0 justify-content-center">
+        <div className="col-11 col-sm-10 col-md-8 profile-content">
+          {profile.data && <ProfileInfo {...profile.data} />}
+        </div>
       </div>
     </Layout>
   )
