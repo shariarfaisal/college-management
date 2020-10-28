@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../layout'
 import './create-post.scss'
-import { Formik, Form} from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import FormControl from './FormControl'
 import { connect } from 'react-redux'
@@ -13,7 +13,8 @@ const CreatePost = ({ post, createPost }) => {
   const initialValues = {
     title: '',
     body: '',
-    tags: ''
+    tags: '',
+    published: []
   }
 
   const onSubmit = (values,submitProps) => {
@@ -27,7 +28,8 @@ const CreatePost = ({ post, createPost }) => {
   const validationSchema = Yup.object({
     title: Yup.string().required('Required!'),
     body: Yup.string().required('Required!').max(5000),
-    tags: Yup.string().max(255)
+    tags: Yup.string().max(255),
+    published: Yup.array()
   })
 
   return(
@@ -50,6 +52,7 @@ const CreatePost = ({ post, createPost }) => {
                         <FormControl control="input" name="title" label="Title" type="text" />
                         <FormControl control="textarea" name="body" label="Body" />
                         <FormControl control="input" name="tags" label="Tags" type="text" />
+                        <FormControl control="checkbox" name="published" published={initialValues.published.length !== 0} label="Published" options={[{key: 'Published',value: 'published'}]} />
 
                         <div className="form-group d-flex">
                           <button disabled={!formik.isValid || !formik.dirty} type="submit" className="btn btn-info px-4 ml-auto">
