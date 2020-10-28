@@ -13,6 +13,7 @@
     "html-to-draftjs": "^1.4.0",
     "node-sass": "^4.14.1",
     "react": "^16.8.6",
+    "react-datepicker": "^3.3.0",
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.13.2",
     "react-html-parser": "^2.0.2",

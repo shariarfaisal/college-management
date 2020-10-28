@@ -19,7 +19,7 @@ const Post = ({ getPostById, match, post}) => {
         <div className="col-sm-10 col-md-8">
           <div className="post">
             {post.loading && <small>loading...</small>}
-            {post.data && <Header {...post.data.profile} />}
+            {post.data && <Header {...post.data.profile} createdAt={post.data.createdAt}/>}
             {post.data && <PostBody {...post.data} />}
             {post.error && <p style={{textAlign: 'center',marginTop: '40px'}}>Not Found</p>}
           </div>

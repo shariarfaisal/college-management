@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 const CreateComment = ({ create, createComment }) => {
   const [body,setBody] = useState('')
-  const [open,setOpen] = useState(true)
+  const [open,setOpen] = useState(false)
   const { id } = useParams()
 
   const onSubmitHandler = e => {
@@ -19,7 +19,10 @@ const CreateComment = ({ create, createComment }) => {
 
   return(
     <div className="create-comment">
-      <label htmlFor="comment" onClick={e => setOpen(!open)} className="title"><i className="bx bx-plus"></i> Comment</label>
+      <label htmlFor="comment" onClick={e => setOpen(!open)} className="title d-flex align-items-center">
+        <i className={`bx bx-comment-${open?'minus': 'add'}`}></i>
+        <span className="ml-2">Comment</span>
+      </label>
       {open && <form onSubmit={onSubmitHandler}>
         <textarea
           id="comment"

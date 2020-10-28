@@ -9,41 +9,6 @@
     padding: 2rem 1.5rem;
 
 
-
-    .header{
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-
-
-      .profile-img{
-        width: 4rem;
-        border-radius: 100%;
-      }
-
-      .identity{
-        .name{
-          font-size: var(--font-size-lg);
-          text-decoration: none;
-          color: var(--text-primary);
-          display: block;
-          transition: .3s;
-
-          &:hover{
-            opacity: .6;
-          }
-        }
-
-        .work{
-          font-size: var(--font-size-xs);
-          color: var(--text-secondary);
-          display: block;
-        }
-      }
-
-    }
-
-
     .post-body{
       padding: 0 1.5rem;
       margin: 2rem 0;
@@ -129,7 +94,7 @@
             padding-top: 1rem;
             img{
               box-shadow: 0px 0px 3px #cccccc;
-              
+
             }
           }
           .middle{

@@ -9,7 +9,9 @@ const PostItem = ({ id, title, tags, createdAt, profile }) => {
         <img src="../img/profile.jpg" alt="Profile" />
       </Link>
       <Link to={`/post/${id}`} className="title text-info">{title}</Link>
-      <small className="ml-auto text-muted timestamp">{createdAt}</small>
+      <small className="ml-auto text-muted timestamp">
+        {new Date(createdAt).toLocaleDateString().replaceAll('/','-')}
+      </small>
     </div>
   )
 }

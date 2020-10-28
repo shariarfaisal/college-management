@@ -6,12 +6,12 @@ import {
 import axios from 'axios'
 
 export const createPost = (arg) => {
-  const { published, ...values } = arg.values 
+  const { published, tags, ...values } = arg.values
   return dispatch => {
     dispatch({
       type: CREATE_POST_REQUEST
     })
-    axios.post('/post/create',{...values,published: published.length !== 0 })
+    axios.post('/post/create',{...values,published: published.length !== 0, tags: tags.trim() })
       .then(res => {
         arg.resetForm()
         dispatch({

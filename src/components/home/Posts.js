@@ -3,6 +3,7 @@ import PostItem from './PostItem'
 import { connect } from 'react-redux'
 import { getPosts, getSearch, getPaginate, setPaginationLimit } from '../../store/actions/posts'
 import Filter from './Filter'
+import Pagination from './Pagination'
 
 const Posts = ({ loading, data, pagination, setLimit, getPosts, getPaginate }) => {
   const [search,setSearch] = useState('')
@@ -24,6 +25,7 @@ const Posts = ({ loading, data, pagination, setLimit, getPosts, getPaginate }) =
       {loading && <div className="col-12 text-center text-muted" style={{fontSize: '1rem'}}>loading...</div>}
       {!loading && <div className="col-sm-10 col-md-8">
         <div className="posts">
+
           <Filter
             limit={pagination.limit}
             setLimit={setLimit}
@@ -31,27 +33,19 @@ const Posts = ({ loading, data, pagination, setLimit, getPosts, getPaginate }) =
             search={search}
             setSearch={setSearch}
           />
+
           {data && data.map(
             (post,i) => <PostItem key={i} {...post} />)
           }
-          {data && !(data.length < pagination.limit && pagination.page === 1) && <div className="d-flex justify-content-center m-4">
-            <button
-              onClick={() => pageHandler('prev')}
-              disabled={pagination.page <= 1 || pagination.loading}
-              type="button"
-              className="btn btn-warning outline-0 px-4 rounded-20 mx-3 d-flex align-items-center">
-                <i className="bx bx-left-arrow-circle ml-1"></i>
-                Prev
-            </button>
-            <button
-              disabled={pagination.loading || data.length < pagination.limit || !pagination.nextBtn}
-              onClick={() => pageHandler('next')}
-              type="button"
-              className="btn btn-info outline-0 px-4 rounded-20 mx-3  d-flex align-items-center">
-                Next
-                <i className="bx bx-right-arrow-circle ml-1"></i>
-            </button>
-          </div>}
+
+          {data &&
+            <Pagination
+              {...pagination}
+              pageHandler={pageHandler}
+              dataLength={data.length}
+            />
+          }
+
         </div>
       </div>}
       {data && data.length === 0 && <div className="col-sm-10 col-md-8">

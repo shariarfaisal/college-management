@@ -39,7 +39,7 @@ function Search({ search, setSearch, getSearch, getClearResult, loading, data, q
     }
   }
 
-  const listener = e => {
+  const onClickListener = e => {
     if(e.srcElement.querySelector('#posts-search-box')){
       if(search){
         setRsltBoxOpen(false)
@@ -52,9 +52,9 @@ function Search({ search, setSearch, getSearch, getClearResult, loading, data, q
 
 
   useEffect(() => {
-    document.addEventListener('click',listener)
+    document.addEventListener('click',onClickListener)
     return () => {
-      document.removeEventListener('click',listener)
+      document.removeEventListener('click',onClickListener)
     }
   },[search])
 
