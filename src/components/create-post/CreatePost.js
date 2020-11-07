@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import Layout from '../layout'
 import './create-post.scss'
 import { Formik, Form } from 'formik'
@@ -31,6 +31,19 @@ const CreatePost = ({ post, createPost }) => {
     tags: Yup.string().max(255),
     published: Yup.array()
   })
+
+  useEffect(() => {
+    const textAreaEle = document.querySelector('#body')
+    const listener = () => {
+      textAreaEle.style.height = 'auto'
+      textAreaEle.style.height = textAreaEle.scrollHeight+'px'
+    }
+    textAreaEle.addEventListener('input',listener)
+
+    return () => {
+      textAreaEle.removeEventListener('input',listener)
+    }
+  },[])
 
   return(
     <Layout>

@@ -2,10 +2,10 @@ import React,{ useState, useEffect } from 'react'
 import DatePicker  from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux'
-import { filterAction, setPaginationLimit } from '../../store/actions/profile'
+import { getPostsAction, setPaginationLimit } from '../../store/actions/profile'
 
 
-function Filter({ setFilter, filter, pagination, setLimit, data: user }) {
+function Filter({ params, getPosts, filter, pagination, setLimit, data: user }) {
   const [date,setDate] = useState(filter.date || '')
 
   useEffect(() => {
@@ -14,27 +14,12 @@ function Filter({ setFilter, filter, pagination, setLimit, data: user }) {
   },[])
 
   const onChangeHandler = (type,data) => {
-    const obj = {
-      profileId: user.profile.id,
-      date: filter.date,
-      published: filter.published,
-      limit: pagination.limit,
-      page: pagination.page 
-    }
-
     if(type === 'date'){
+      getPosts({...params, date: data })
       setDate(data)
-      setFilter({
-        ...obj,
-        date: data
-      })
     }else if(type === 'published'){
-      setFilter({
-        ...obj,
-        published: data
-      })
+      getPosts({...params, published: data})
     }
-
   }
 
   return(
@@ -58,7 +43,7 @@ function Filter({ setFilter, filter, pagination, setLimit, data: user }) {
         <DatePicker
           selected={date}
           onChange={date => onChangeHandler('date',date)}
-          className="form-control rounded-0"
+          className="form-control rounded-0 py-4 shadow-md border-0 "
           id="date-picker"
         />
 
@@ -93,7 +78,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setFilter: (arg) => dispatch(filterAction(arg)),
+    getPosts: (arg) => dispatch(getPostsAction(arg)),
     setLimit: (arg) => dispatch(setPaginationLimit(arg))
   }
 }

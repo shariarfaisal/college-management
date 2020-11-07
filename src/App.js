@@ -2,6 +2,7 @@ import React,{ Fragment, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Home from './components/home/Home'
 import Profile from './components/profile'
+import ProfileEdit from './components/profile-edit'
 import Users from './components/users'
 import User from './components/user'
 import Login from './components/login'
@@ -52,6 +53,7 @@ const App = ({ profile, getProfile, getLogin, history }) => {
           <Route path="/users" exact component={Users} />
           <Route path="/users/:id" exact component={User} />
           <Route path="/profile" exact component={Profile} />
+          <Route path="/profile/edit" exact component={ProfileEdit} />
           <Route path="/post/new" exact component={CreatePost} />
           <Route path="/profile/posts" exact component={MyPosts} />
           <Route path="/post/:id" exact component={Post} />

@@ -2,11 +2,9 @@ import {
   GET_PROFILE_ERROR,
   GET_PROFILE_SUCCESS,
   TOKEN_NOT_FOUND,
-  USER_POSTS_SUCCESS,
-  USER_POSTS_ERROR,
-  SET_FILTER_REQUEST,
-  SET_FILTER_SUCCESS,
-  SET_FILTER_ERROR,
+  GET_POSTS_SUCCESS,
+  GET_POSTS_ERROR,
+  GET_POSTS_REQUEST,
   SET_PAGINATION_LIMIT
 } from '../types/profile'
 
@@ -15,28 +13,23 @@ const initialState = {
   loading: true,
   data: null,
   error: null,
+  update:{
+    loading: false,
+    error: null
+  },
   posts: {
-    loading: true,
+    loading: false,
     data: null,
     error: null
   },
   filter:{
-    loading: false,
     published: '',
     date: '',
-    error: null
-  },
-  search:{
-    loading: false,
-    query: '',
-    data: null,
-    limit: 20,
-    page: 1
+    search: ''
   },
   pagination:{
-    loading: false,
-    limit: 5,
     limits: [5,10,20,30,40,50,75,100],
+    limit: 5,
     page: 1,
     nextBtn: true
   }
@@ -64,60 +57,59 @@ const reducer = (state=initialState,action) => {
         data: null,
         error: action.payload
       }
-    case USER_POSTS_SUCCESS:
+    case GET_POSTS_REQUEST:{
+      const { posts, filter, pagination } = state
+      const { published, date, search, page, limit } = action.payload
       return {
         ...state,
         posts:{
-          loading: false,
-          data: action.payload,
-          error: null
+          ...posts,
+          loading: true
+        },
+        filter: {
+          ...filter,
+          published,
+          date,
+          search
+        },
+        pagination:{
+          ...pagination,
+          page,
+          limit
         }
       }
-    case USER_POSTS_ERROR:
+    }
+    case GET_POSTS_SUCCESS:{
+      const { posts, filter, pagination } = state
+      const { data, published, date, search, page, limit } = action.payload
+
+      return {
+        ...state,
+        posts:{
+          ...posts,
+          loading: false,
+          data
+        },
+        filter:{
+          ...filter,
+          published,
+          date,
+          search
+        },
+        pagination:{
+          ...pagination,
+          page,
+          limit,
+          nextBtn: data.length === limit
+        }
+      }
+    }
+    case GET_POSTS_ERROR:
       return {
         ...state,
         posts:{
           loading: false,
           data: null,
-          error: action.payload
-        }
-      }
-    case SET_FILTER_REQUEST:
-      return {
-        ...state,
-        filter:{
-          ...state.filter,
-          loading: true,
-          published: action.payload.published,
-          date: action.payload.date
-        }
-      }
-    case SET_FILTER_SUCCESS:
-      const { data, published, date, limit, page } = action.payload
-      return {
-        ...state,
-        posts:{
-          ...state.posts,
-          data
-        },
-        filter:{
-          ...state.filter,
-          loading: false,
-          published,
-          date
-        },
-        pagination:{
-          ...state.pagination,
-          limit,
-          page
-        }
-      }
-    case SET_FILTER_ERROR:
-      return {
-        ...state,
-        filter:{
-          ...state.filter,
-          loading: false,
           error: action.payload
         }
       }

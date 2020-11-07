@@ -140,3 +140,14 @@
 
   }
 }
+
+#textarea-body{
+  width: 100%;
+  display: block;
+  border: none;
+  resize: none;
+  &:focus{
+    outline: 0;
+
+  }
+}

@@ -6,7 +6,7 @@ function Textarea(props) {
   const { label, name, ...rest } = props
   return(
     <div className="form-group">
-      <label htmlFor={name}>{label}</label>
+      <label style={{fontSize: '1.1rem'}} htmlFor={name}>{label}</label>
       <Field
         as="textarea"
         id={name}
